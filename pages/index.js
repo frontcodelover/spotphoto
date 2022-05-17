@@ -5,6 +5,7 @@ import Link from 'next/link'
 import React, { useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebase";
+import HomeIndex from "./home/HomeIndex";
 
 export default function Home() {
 
@@ -34,7 +35,8 @@ export default function Home() {
         </header>
       </Head>
 
-      <main className={styles.main}>
+      <main className="main">
+        <HomeIndex />
         
       </main>
 
