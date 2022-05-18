@@ -22,6 +22,7 @@ const [isBrowser, setIsBrowser] = useState(false);
 // const { id } = useParams();
 const router = useRouter()
 const {id} = router.query
+console.log(id)
 // on récupère les données de la base de données pour un ID donné
 
 

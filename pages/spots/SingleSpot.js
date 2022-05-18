@@ -26,12 +26,7 @@ import { useRouter } from "next/router";
 // import ImageCurrentSpot from "./ImageCurrentSpot";
 import dynamic from "next/dynamic";
 
-const MyAwesomeMap = dynamic(
-  () => import("./spotmap"), 
-  { ssr: false }
-  );
-
-
+const MyAwesomeMap = dynamic(() => import("./spotmap"), { ssr: false });
 
 function SingleSpot() {
   const [spots, setSpot] = useState(null);
@@ -223,7 +218,7 @@ function SingleSpot() {
     fetchUserInfo();
     // if (!user) return navigate("/");
     adminUser();
-    MyAwesomeMap
+    MyAwesomeMap;
   }, [user, loading, id, load, currentUser]);
 
   if (isLoading) return <div>Loading...</div>;
