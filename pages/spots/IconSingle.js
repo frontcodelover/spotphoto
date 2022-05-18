@@ -1,7 +1,7 @@
 import L from 'leaflet';
 // import locationMarker from '../assets/svg/location.svg';
 
-const Icon = new L.Icon({
+ const Icon = new L.Icon({
     iconUrl: locationMarker,
     iconRetinaUrl: '../assets/svg/location.svg',
     iconAnchor: [17, 46],
@@ -9,4 +9,4 @@ const Icon = new L.Icon({
     className: 'leaflet-div-icon-two'
 });
 
-export { Icon };
+export default Icon

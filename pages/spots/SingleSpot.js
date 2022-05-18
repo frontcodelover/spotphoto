@@ -20,7 +20,7 @@ import {
   FaBookmark,
   FaRegBookmark,
 } from "react-icons/fa";
-// import SpotMap from "./SpotMap";
+// import spotmap from "./spotmap";
 // import SunsetAndSunriseTime from './SunsetAndSunriseTime';
 import { useRouter } from "next/router";
 // import ImageCurrentSpot from "./ImageCurrentSpot";
@@ -201,7 +201,7 @@ function SingleSpot() {
         setLatitude(currentSpot.lat);
         setLongitude(currentSpot.lon);
         setNameOfSpot(currentSpot.inputs.name);
-        console.log(currentSpot.inputs.name);
+        // console.log(currentSpot.inputs.name);
 
         document.title = `${currentSpot.inputs.name} - ${currentSpot.inputs.pays}`;
         fetchUserWhoAddThisPost();
@@ -229,7 +229,7 @@ function SingleSpot() {
     <div className="main">
       <div className="body-size">
         <div className="container-post">
-          <MyAwesomeMap />
+          
 
           {/* <ImageCurrentSpot alt={nameOfSpot} /> */}
 
@@ -300,8 +300,7 @@ function SingleSpot() {
           </div>
         </div>
 
-        {/* <SpotMap />  */}
-        <div className=""></div>
+        <MyAwesomeMap />
       </div>
     </div>
   );
