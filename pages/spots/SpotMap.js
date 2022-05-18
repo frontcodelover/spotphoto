@@ -41,6 +41,8 @@ const {id} = router.query
 //   }
 // };
 
+console.log("first")
+
 useEffect(() => {
   const fetchLatLon = async () => {
     try {
