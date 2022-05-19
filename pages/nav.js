@@ -1,16 +1,19 @@
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebase";
 
 export default function Nav() {
   const [user, setUser] = useState(null);
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  }, []);
+
+  console.log(user);
   return (
     <Head>
       <title>Create Next App</title>
@@ -23,23 +26,25 @@ export default function Nav() {
         <nav>
           <ul>
             <li>
-              <Link href="/les-spots" className="hover-underline">
-                Les spots
+              <Link href="/les-spots">
+                <a className="hover-underline">Les spots</a>
               </Link>
             </li>
             <li>
-              <Link href="/account/" className="hover-underline">
-                {user ? "Mon compte" : "S'inscrire"}
+              <Link href="/account/">
+                <a className="hover-underline">Mon compte</a>
               </Link>
             </li>
             <li>
-              <Link href="/addspot" className="hover-underline">
-                {user ? "Ajouter un spot" : "Ajouter un spot"}
+              <Link href="/addspot">
+                <a className="hover-underline">
+                  {!user ? "Ajouter un spot" : "Ajouter un spot"}
+                </a>
               </Link>
             </li>
             <li>
-              <Link href="/about" className="hover-underline">
-                Qui sommes-nous ?
+              <Link href="/about">
+                <a className="hover-underline">Qui sommes-nous ?</a>
               </Link>
             </li>
           </ul>

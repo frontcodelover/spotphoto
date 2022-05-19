@@ -229,8 +229,6 @@ function SingleSpot() {
     <div className="main">
       <div className="body-size">
         <div className="container-post">
-          
-
           {/* <ImageCurrentSpot alt={nameOfSpot} /> */}
 
           <div className="content-post">
