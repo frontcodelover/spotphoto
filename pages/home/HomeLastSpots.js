@@ -37,7 +37,7 @@ export default function IndexBanner() {
       <div className="flexcontent">
         {spots.map(
           (spot, index) =>
-            index < 11 &&
+            index < 4 &&
             spot.data.published && (
               <div key={spot.id} className="flex-row">
                 {/* AJOUTER UN ATL POUR L'IMAGE AVEC LES PROPS */}
