@@ -21,14 +21,14 @@ import {
   FaRegBookmark,
 } from "react-icons/fa";
 // import spotmap from "./spotmap";
-// import SunsetAndSunriseTime from './SunsetAndSunriseTime';
+import SunsetAndSunriseTime from "./SunsetAndSunriseTime";
 import { useRouter } from "next/router";
-// import ImageCurrentSpot from "./ImageCurrentSpot";
+import ImageOfCurrentSpot from "./ImageOfCurrentSpot";
 import dynamic from "next/dynamic";
-
-const MyAwesomeMap = dynamic(() => import("./spotmap"), { ssr: false });
+import Nav from "../nav";
 
 function SingleSpot() {
+  const MapOfSingleSpot = dynamic(() => import("./spotmap"), { ssr: false });
   const [spots, setSpot] = useState(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
@@ -44,6 +44,7 @@ function SingleSpot() {
   const [user, load] = useAuthState(auth);
   const [loading] = useState(false);
   const [BookmarkAllreadyOk, setBookmarkAllreadyOk] = useState(false);
+  const [perfectMoment, setPerfectMoment] = useState("");
   const [nameOfSpot, setNameOfSpot] = useState(null);
 
   const AddLike = async (e) => {
@@ -54,29 +55,48 @@ function SingleSpot() {
     Like.current.value = +spots.nbLike + 1;
   };
 
+  const GeoCodeHide = () => {
+    return (
+      <div class="alert alert-danger" role="alert">
+        Vous devez être connecté pour voir les coordonnées GPS exactes.
+      </div>
+    );
+  };
+
   function BookmarkAllready() {
-    if (BookmarkAllreadyOk === false) {
-      //*Si pas enregistré
-      return (
-        <>
-          <button
-            onClick={() => addToUser(currentUser, id)}
-            className="btn-save"
-          >
-            <FaRegBookmark />
-          </button>
-        </>
-      );
+    if (user) {
+      if (BookmarkAllreadyOk === false) {
+        //*Si pas enregistré
+        return (
+          <>
+            <button
+              onClick={() => addToUser(currentUser, id)}
+              className="btn-save"
+            >
+              <FaRegBookmark />
+            </button>
+          </>
+        );
+      } else {
+        //*Si déjà enregistré
+        return (
+          <>
+            <button
+              onClick={() => removeToUser(currentUser, id)}
+              className="btn-save"
+            >
+              <FaBookmark />
+            </button>
+          </>
+        );
+      }
     } else {
-      //*Si déjà enregistré
+      //*Si pas connecté
       return (
         <>
-          <button
-            onClick={() => removeToUser(currentUser, id)}
-            className="btn-save"
-          >
-            <FaBookmark />
-          </button>
+          <div class="alert alert-danger" role="alert">
+            Vous devez être connecté pour ajouter un favoris
+          </div>
         </>
       );
     }
@@ -84,7 +104,7 @@ function SingleSpot() {
 
   const fetchUserInfo = async () => {
     try {
-      const docRefUser = doc(db, "users", currentUser.uid);
+      const docRefUser = doc(db, "users", currentUser?.uid);
       const docss = await getDoc(docRefUser);
       const userTmp = docss.data();
       userTmp.bookMark.map((element) => {
@@ -143,11 +163,8 @@ function SingleSpot() {
         const q = query(collection(db, "users"), where("uid", "==", user?.uid));
         const doc = await getDocs(q);
         const data = doc.docs[0].data();
-        setBigboss(data.bigboss);
-      } catch (err) {
-        console.error(err);
-        alert("An error occured while fetching user data");
-      }
+        setBigboss(data?.bigboss);
+      } catch (err) {}
     };
     const fetchUserWhoAddThisPost = async () => {
       try {
@@ -201,6 +218,7 @@ function SingleSpot() {
         setLatitude(currentSpot.lat);
         setLongitude(currentSpot.lon);
         setNameOfSpot(currentSpot.inputs.name);
+        setPerfectMoment(currentSpot.inputs.moment);
         // console.log(currentSpot.inputs.name);
 
         document.title = `${currentSpot.inputs.name} - ${currentSpot.inputs.pays}`;
@@ -218,7 +236,7 @@ function SingleSpot() {
     fetchUserInfo();
     // if (!user) return navigate("/");
     adminUser();
-    MyAwesomeMap;
+    MapOfSingleSpot;
   }, [user, loading, id, load, currentUser]);
 
   if (isLoading) return <div>Loading...</div>;
@@ -227,78 +245,89 @@ function SingleSpot() {
   //   console.log(spots)
   return (
     <div className="main">
+      <Nav />
       <div className="body-size">
         <div className="container-post">
           {/* <ImageCurrentSpot alt={nameOfSpot} /> */}
 
-          <div className="content-post">
-            {bigboss ? <button onClick={deletePost}>Supprimer</button> : ""}
+          <div className="content-post flex flex-row">
+            <div className="basis-2/4 pr-3 pb-3">
+              <ImageOfCurrentSpot />
+            </div>
 
-            {/* <ImageCurrentSpot /> */}
+            {/* {
+              user ? BookmarkAllready() : alert("connectez vous pour ajouter un favoris")
+              
+            } */}
+            <div className="basis-2/4 px-3 pb-3">
+              {bigboss ? <button onClick={deletePost}>Supprimer</button> : ""}
+              {BookmarkAllready()}
 
-            {BookmarkAllready()}
-
-            {/* <button onClick={() => addToUser(currentUser, id)} className="btn-save">{BookmarkAllready()}</button>
+              {/* <button onClick={() => addToUser(currentUser, id)} className="btn-save">{BookmarkAllready()}</button>
             <br />
             <button onClick={() => removeToUser(currentUser, id)} className="btn-save">{BookmarkAllready()}</button> */}
-
-            <p className="head-title-banner">{spots.inputs.pays}</p>
-            <h1 className="text-2xl text-sky-600">{spots.inputs.name}</h1>
-            <div className="likebtn-global">
-              {/* <button className="btn-heart" onClick={() => setCount(count + 1)}>
+              <p className="font-semibold text-lg">{spots.inputs.pays}</p>
+              <h1 className="text-4xl text-sky-600 pb-3">
+                {spots.inputs.name}
+              </h1>
+              <div className="likebtn-global">
+                {/* <button className="btn-heart" onClick={() => setCount(count + 1)}>
               <FaHeart className="heart-icon" />
             </button> */}
 
-              <input
-                id="heart"
-                type="checkbox"
-                onChange={AddLike}
-                ref={Like}
-                onClick={handleIncrementCount}
-                // onClick={() => setCount(+spot.nbLike + 1)}
-                value={+spots.nbLike + 1}
-              />
-              <div className="row">
-                {
-                  //Check if message failed
-                  count === null ? (
-                    <div>
-                      {" "}
-                      <label htmlFor="heart">❤</label> {spots.nbLike} personnes
-                      ont aimé ce spot
-                    </div>
-                  ) : (
-                    <div>
-                      {" "}
-                      <label htmlFor="heart" className="redHeart">
-                        ❤
-                      </label>
-                      {count} personnes ont aimé ce spot
-                    </div>
-                  )
-                }
-              </div>
-              {/* <label htmlFor="heart">❤</label>  
+                <input
+                  id="heart"
+                  type="checkbox"
+                  onChange={AddLike}
+                  ref={Like}
+                  onClick={handleIncrementCount}
+                  // onClick={() => setCount(+spot.nbLike + 1)}
+                  value={+spots.nbLike + 1}
+                />
+                <div className="row">
+                  {
+                    //Check if message failed
+                    count === null ? (
+                      <div>
+                        {" "}
+                        <label htmlFor="heart">❤</label> {spots.nbLike}{" "}
+                        personnes ont aimé ce spot
+                      </div>
+                    ) : (
+                      <div>
+                        {" "}
+                        <label htmlFor="heart" className="redHeart">
+                          ❤
+                        </label>
+                        {count} personnes ont aimé ce spot
+                      </div>
+                    )
+                  }
+                </div>
+                {/* <label htmlFor="heart">❤</label>  
               {(count === null ? spots.nbLike : count)} personnes ont aimé ce spot */}
-            </div>
+              </div>
 
-            {spots.inputs.body}
+              <div className="py-3 bg-neutral-50 p-3 text-justify">
+                {spots.inputs.body}
+              </div>
 
-            <div className="moment">
-              <FaRegClock /> {spots.inputs.moment}
-            </div>
-
-            {/* <SunsetAndSunriseTime latitude={latitude} longitude={longitude} /> */}
-            {spots.inputs.conseil}
-            <div className="latlon">
-              <FaMapMarkerAlt />
-              {spots.lat}, {spots.lon}
-              {infoUserWhoAdd}
+              {spots.inputs.conseil}
+              <div className="latlon">
+                <FaMapMarkerAlt />
+                {user ? spots.lat + "  " + spots.lon : GeoCodeHide()}
+                {/* {spots.lat}, {spots.lon} */}
+                <SunsetAndSunriseTime
+                  latitude={latitude}
+                  longitude={longitude}
+                  perfectMoment={perfectMoment}
+                />
+                {infoUserWhoAdd}
+              </div>
             </div>
           </div>
         </div>
-
-        <MyAwesomeMap />
+        <MapOfSingleSpot />
       </div>
     </div>
   );

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "firebase": "^9.8.1",
+    "flowbite": "^1.4.7",
     "leaflet": "^1.8.0",
     "leaflet-defaulticon-compatibility": "^0.1.1",
     "leaflet-geosearch": "^3.6.0",

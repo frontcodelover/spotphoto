@@ -20,6 +20,8 @@ export default function spotmap() {
   const [spot, setSpot] = useState({ name: "Pas de data geo..." });
   const [position, setPosition] = useState([]);
   const [isBrowser, setIsBrowser] = useState(false);
+  const [spotName, setSpotName] = useState("");
+  const [pays, setPays] = useState("");
   // // const { id } = useParams();
   const router = useRouter();
   const { id } = router.query;
@@ -30,8 +32,6 @@ export default function spotmap() {
     ssr: false
   });
 
- 
-
   useEffect(() => {
     const fetchLatLon = async () => {
       try {
@@ -40,9 +40,18 @@ export default function spotmap() {
         const spotTmp = docss.data();
         setSpot(spotTmp);
 
+        spotTmp.inputs.name 
+          ? setSpotName(spotTmp.inputs.name)
+          : setSpotName("Pas de nom");
+
+        spotTmp.inputs.pays
+          ? setPays(spotTmp.inputs.pays)
+          : setPays("Pas de pays");
+        
         spotTmp.lat && spotTmp.lon
           ? setPosition([spotTmp.lat, spotTmp.lon])
           : setPosition([0, 0]);
+        
           
       } catch (err) {
         console.error(err);
@@ -67,7 +76,7 @@ export default function spotmap() {
       {
         <div className="map-single">
           {position.length !== 0 &&  ( 
-          <MapWithNoSSR position={position} zoom={10} minZoom={4}/>
+            <MapWithNoSSR position={position} zoom={10} minZoom={4} spotName={spotName} pays={pays}/>
           
           )} 
          

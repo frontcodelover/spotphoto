@@ -1,5 +1,5 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-const Map = ({ position, zoom, minZoom }) => {
+const Map = ({ position, zoom, minZoom, spotName, pays }) => {
     console.log(position)
     return (
         <MapContainer center={position} zoom={zoom} scrollWheelZoom={true} style={{ height: "100%", width: "100%" }} minZoom={minZoom}>
@@ -13,7 +13,7 @@ const Map = ({ position, zoom, minZoom }) => {
         animate={true}
         >
           <Popup>
-            Hey ! you found me
+            {spotName} - {pays}
           </Popup>
         </Marker>
       </MapContainer>

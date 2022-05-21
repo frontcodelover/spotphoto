@@ -387,3 +387,8 @@ button.btn-logout {
   position: relative;
   height: 100vh;
 }
+
+/*** SINGLE POST ***/
+.padding-one-pourcent {
+  padding: 1%;
+}
