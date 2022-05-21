@@ -34,15 +34,15 @@ export default function IndexBanner() {
         <p className="head-title-banner">Votre prochaine photo</p>
         <h2 className="title-banner">Les derniers lieux ajoutés</h2>
       </div>
-      <div className="flexcontent">
+      <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
         {spots.map(
           (spot, index) =>
             index < 4 &&
             spot.data.published && (
-              <div key={spot.id} className="flex-row">
+              <div key={spot.id} className="">
                 {/* AJOUTER UN ATL POUR L'IMAGE AVEC LES PROPS */}
                 <ImageForHomeSpot photoURL={spot.uid} />
-                <div className="link-card">
+                <div className="">
                   <a href={`/spots/${spot.id}`} className="spot-nom-two">
                     {" "}
                     {spot.data.inputs.name}

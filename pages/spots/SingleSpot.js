@@ -243,7 +243,7 @@ function SingleSpot() {
             <button onClick={() => removeToUser(currentUser, id)} className="btn-save">{BookmarkAllready()}</button> */}
 
             <p className="head-title-banner">{spots.inputs.pays}</p>
-            <h1 className="title-banner">{spots.inputs.name}</h1>
+            <h1 className="text-2xl text-sky-600">{spots.inputs.name}</h1>
             <div className="likebtn-global">
               {/* <button className="btn-heart" onClick={() => setCount(count + 1)}>
               <FaHeart className="heart-icon" />
