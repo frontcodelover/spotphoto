@@ -1,6 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap");
 /* 'Montserrat', sans-serif */
+:root {
+  --black: #18181c;
+  --green: #4ade80; /*text-green-400*/
+  --white: #fcf7f8;
+  --grey: #d4d4d8; /*text-zinc-300*/
+  --blue: #06b6d4; /*text-cyan-500*/
+  --orange: #f97316; /*text-orange-500*/
+  --yellow: #fde047; /*text-yellow-300*/
+}
 * {
   margin: 0;
   padding: 0;
@@ -23,7 +32,7 @@ header {
 
 
 .logo {
-  color: #113441;
+  color: #fff;
   padding: 20px;
   font-weight: 800;
   flex: 1 1;
@@ -31,13 +40,24 @@ header {
   text-decoration: none;
 }
 
+a.logo {
+  color: #fff;
+  text-decoration: none;
+}
+
 .colorlogo {
-  color: #ff4000;
+  color: #00ff33;
 }
 
 .hover-underline {
   text-decoration: none;
-  color: #227c9d;
+  color: #fff;
+  font-weight: 600;
+}
+
+a.hover-underline {
+  text-decoration: none;
+  color: #fff;
   font-weight: 600;
 }
 
@@ -47,7 +67,7 @@ header {
   content: " ";
   display: block;
   inset: 0 0 0 0;
-  border-bottom: 2px solid #227c9d;
+  border-bottom: 2px solid #fff;
   z-index: -1;
   transition: transform 0.3s ease;
 }
@@ -385,10 +405,52 @@ button.btn-logout {
 .map-single {
   width: 100%;
   position: relative;
-  height: 100vh;
+  height: 60vh;
 }
 
 /*** SINGLE POST ***/
 .padding-one-pourcent {
   padding: 1%;
+}
+
+[id="heart"] {
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+} 
+
+[for="heart"] {
+  color: #272b2e;
+  cursor: pointer;
+  font-size: 1.3em;
+  align-self: center;
+  transition: color 0.2s ease-in-out;
+  padding-right: 5px;
+}
+
+[for="heart"]:hover {
+  color: #000;
+}
+
+[for="heart"]::selection {
+  color: none;
+  background: transparent;
+}
+
+[for="heart"]::moz-selection {
+  color: none;
+  background: transparent;
+}
+
+[id="heart"]:checked + label, [id="heart"]:focus :active {
+  color: #e2264d;
+  will-change: font-size;
+}
+
+.redHeart:active {
+  color: #e2264d;
+}
+
+.single-image {
+  height: calc(100vh - 70px);
 }

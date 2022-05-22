@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaRegClock } from "react-icons/fa";
+import {OpenWeatherApiKey} from "../firebase/firebase"
 
 
 function SunsetAndSunriseTime({ latitude, longitude, perfectMoment }) {
@@ -16,7 +17,7 @@ function SunsetAndSunriseTime({ latitude, longitude, perfectMoment }) {
   useEffect(() => {
     if (latitude && longitude) {
       fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=fr&appid=f6ca0fae5f03a9383131aeb39f64ce87`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=fr&appid=${OpenWeatherApiKey}`
       )
         .then((response) => response.json())
         .then((response) => {
@@ -54,36 +55,73 @@ function SunsetAndSunriseTime({ latitude, longitude, perfectMoment }) {
     return <div>Chargement...</div>;
   } else {
     return (
-      
-      <div className="bg-orange-100">
-        <h2 className="text-base pt-3 pl-6 text-orange-400 font-semibold flex">
-        <span><FaRegClock className="text-lg flex mr-2 pt-1" /></span> Est-ce le bon moment pour faire une photo ?
+      <>
+        <h2 className="font-semibold text-lg pb-2 text-zinc-700"> Est-ce le bon moment pour faire une photo ?</h2>
+      <div className="bg-gray-100 p-6">
+        <h2 className="text-base pt-3 pl-6 text-zinc-700 font-semibold flex">
         </h2>
-        <p className="text-base pt-3 pl-6 text-orange-800">Le moment idéal : { perfectMoment }</p>
+        
         <div className="flex flex-row text-sm ">
-          <img
-            src={`http://openweathermap.org/img/wn/${weather}@2x.png`}
-            alt="picto-meteo"
-            className="basis-1/9"
-          />
-          <div className="basis-8/9 pt-3">
-            {temperature && (
+       
+          {/* <div className="basis-8/9 pt-3"> */}
+            {/* {temperature && (
               <p>
-                Il fait actuellement <b>{temperature}°C</b> dans ce lieu avec un
-                ressenti de {feelTemperature}°C.
+              Il fait actuellement <b>{temperature}°C</b> dans ce lieu avec un
+              ressenti de {feelTemperature}°C.
               </p>
-            )}
-            <div>
+            )} */}
+            {/* <div>
               Heure du coucher de soleil :{" "}
               <b>{`${hourOfSunset} h ${minuteOfSunset} min`}</b>
-            </div>
-            <div>
+              </div>
+              <div>
               Heure du lever de soleil :{" "}
               <b>{`${hourOfSunrise} h ${minuteOfSunrise} min`}</b>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
         </div>
+        {temperature && (
+          
+          
+          
+          <div class="table w-full ...">
+ 
+ <div class="table-row-group">
+   <div class="table-row">
+     <div class="table-cell ...">Météo actuellement</div>
+     <div class="table-cell ..."> <img
+            src={`http://openweathermap.org/img/wn/${weather}.png`}
+            alt="picto-meteo"
+            className="w-8 h-8 "
+            
+            /></div>
+   </div>
+   <div class="table-row">
+     <div class="table-cell ...">Température</div>
+     <div class="table-cell ...">{temperature}°C</div>
+   </div>
+   <div class="table-row">
+         <div class="table-cell ...">Ressenti</div>
+         <div class="table-cell ...">{feelTemperature}°C</div>
+   </div>
+   <div class="table-row">
+     <div class="table-cell ...">Heure coucher de soleil</div>
+     <div class="table-cell ...">{`${hourOfSunset} h ${minuteOfSunset} min`}</div>
+   </div>
+   <div class="table-row">
+     <div class="table-cell ...">Heure lever de soleil</div>
+     <div class="table-cell ...">{`${hourOfSunrise} h ${minuteOfSunrise} min`}</div>
+   </div>
+   <div class="table-row">
+     <div class="table-cell ...">Moment idéal pour une photo</div>
+     <div class="table-cell ...">{ perfectMoment }</div>
+   </div>
+ </div>
+</div>
+ )}
+
       </div>
+ </>
     );
   }
 }

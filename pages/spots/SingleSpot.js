@@ -26,6 +26,7 @@ import { useRouter } from "next/router";
 import ImageOfCurrentSpot from "./ImageOfCurrentSpot";
 import dynamic from "next/dynamic";
 import Nav from "../nav";
+import Footer from "../footer";
 
 function SingleSpot() {
   const MapOfSingleSpot = dynamic(() => import("./spotmap"), { ssr: false });
@@ -71,7 +72,7 @@ function SingleSpot() {
           <>
             <button
               onClick={() => addToUser(currentUser, id)}
-              className="btn-save"
+              className="btn-save text-orange-500"
             >
               <FaRegBookmark />
             </button>
@@ -83,7 +84,7 @@ function SingleSpot() {
           <>
             <button
               onClick={() => removeToUser(currentUser, id)}
-              className="btn-save"
+              className="btn-save text-orange-500"
             >
               <FaBookmark />
             </button>
@@ -244,33 +245,73 @@ function SingleSpot() {
 
   //   console.log(spots)
   return (
+    <>
     <div className="main">
       <Nav />
-      <div className="body-size">
-        <div className="container-post">
-          {/* <ImageCurrentSpot alt={nameOfSpot} /> */}
 
-          <div className="content-post flex flex-row">
-            <div className="basis-2/4 pr-3 pb-3">
-              <ImageOfCurrentSpot />
-            </div>
+      <div className="container-post">
+        {/* <ImageCurrentSpot alt={nameOfSpot} /> */}
 
-            {/* {
-              user ? BookmarkAllready() : alert("connectez vous pour ajouter un favoris")
-              
-            } */}
-            <div className="basis-2/4 px-3 pb-3">
-              {bigboss ? <button onClick={deletePost}>Supprimer</button> : ""}
-              {BookmarkAllready()}
+        <div className="content-post">
+          <div className="pr-3 pb-3 flex justify-center bg-neutral-800">
+            <ImageOfCurrentSpot />
+          </div>
 
-              {/* <button onClick={() => addToUser(currentUser, id)} className="btn-save">{BookmarkAllready()}</button>
-            <br />
-            <button onClick={() => removeToUser(currentUser, id)} className="btn-save">{BookmarkAllready()}</button> */}
-              <p className="font-semibold text-lg">{spots.inputs.pays}</p>
-              <h1 className="text-4xl text-sky-600 pb-3">
+          <div className="px-3 py-9 max-w-screen-xl m-auto">
+            {/* {bigboss ? <button onClick={deletePost}>Supprimer</button> : ""} */}
+          
+            
+            
+            <div className="flex flex-row">
+
+            <div className="w-6/12 pr-8">
+              <p className="font-semibold text-lg text-green-500">{spots.inputs.pays}</p>
+              <h1 className="text-4xl text-zinc-700 pb-2">
                 {spots.inputs.name}
-              </h1>
-              <div className="likebtn-global">
+                </h1>
+                <div className="latlon flex pb-1 text-sm text-orange-500">
+                <div className="flex">
+                  <FaMapMarkerAlt />
+                </div>
+                <div className="flex pl-1">
+                  {user
+                    ? spots.lat.toFixed(5) + " - " + spots.lon.toFixed(5)
+                    : GeoCodeHide()}
+                </div>
+              </div>
+              
+              <div className="py-3  text-justify">
+                <h2 className="font-semibold text-lg pb-1 text-zinc-700">
+                  Description du lieu
+                </h2>
+                <p className="text-zinc-500">{spots.inputs.body}</p>
+                </div>
+                <div className="py-3  text-justify">
+                <h2 className="font-semibold text-lg pb-1 text-zinc-700">
+                  Quel est le matériel conseillé ?
+                </h2>
+                <p className="text-zinc-500">{spots.inputs.conseil}</p>
+              </div>
+              <div className="py-3 text-justify">
+                <h2 className="font-semibold text-lg pb-1 text-zinc-700">
+                  Accès au spot photo
+                </h2>
+              </div>
+            </div>
+          
+              <div className="w-6/12">
+              <div className="text-right text-3xl pb-11 pt-8">{BookmarkAllready()}</div>
+             
+
+              {/* {spots.lat}, {spots.lon} */}
+              <SunsetAndSunriseTime
+                latitude={latitude}
+                longitude={longitude}
+                perfectMoment={perfectMoment}
+              />
+              
+                {infoUserWhoAdd}
+                <div className="likebtn-global">
                 {/* <button className="btn-heart" onClick={() => setCount(count + 1)}>
               <FaHeart className="heart-icon" />
             </button> */}
@@ -288,9 +329,9 @@ function SingleSpot() {
                   {
                     //Check if message failed
                     count === null ? (
-                      <div>
+                      <div className="text-red-500">
                         {" "}
-                        <label htmlFor="heart">❤</label> {spots.nbLike}{" "}
+                        <label htmlFor="heart ">❤</label> {spots.nbLike}{" "}
                         personnes ont aimé ce spot
                       </div>
                     ) : (
@@ -307,29 +348,18 @@ function SingleSpot() {
                 {/* <label htmlFor="heart">❤</label>  
               {(count === null ? spots.nbLike : count)} personnes ont aimé ce spot */}
               </div>
-
-              <div className="py-3 bg-neutral-50 p-3 text-justify">
-                {spots.inputs.body}
               </div>
-
-              {spots.inputs.conseil}
-              <div className="latlon">
-                <FaMapMarkerAlt />
-                {user ? spots.lat + "  " + spots.lon : GeoCodeHide()}
-                {/* {spots.lat}, {spots.lon} */}
-                <SunsetAndSunriseTime
-                  latitude={latitude}
-                  longitude={longitude}
-                  perfectMoment={perfectMoment}
-                />
-                {infoUserWhoAdd}
-              </div>
-            </div>
+              
+              
           </div>
         </div>
-        <MapOfSingleSpot />
-      </div>
+        </div>
+        </div>
+      <div className="max-w-screen-xl m-auto pt-3 mb-10 py-3"><MapOfSingleSpot /></div>
+
     </div>
+      <Footer />
+    </>
   );
 }
 
