@@ -58,10 +58,33 @@ function SingleSpot() {
 
   const GeoCodeHide = () => {
     return (
-      <div class="alert alert-danger" role="alert">
-        Vous devez être connecté pour voir les coordonnées GPS exactes.
+      <div class="bg-red-200 p-2 rounded text-red-700">
+        <div className="flex">
+          <FaMapMarkerAlt />
+          <div className="pl-1">
+            Vous devez être connecté pour voir les coordonnées GPS exactes.
+          </div>
+        </div>
       </div>
     );
+  };
+
+  const GeoCodeShow = () => {
+    return (
+      <div class="text-orange-500">
+        <div className="flex">
+          <FaMapMarkerAlt />
+          <div className="pl-1">
+            {spots.lat.toFixed(5) + " - " + spots.lon.toFixed(5)}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  function alertFav() {
+    alert("Vous devez être connecté pour ajouter ce spot dans vos favoris.") 
+    ;
   };
 
   function BookmarkAllready() {
@@ -70,36 +93,67 @@ function SingleSpot() {
         //*Si pas enregistré
         return (
           <>
-            <button
-              onClick={() => addToUser(currentUser, id)}
-              className="btn-save text-orange-500"
-            >
-              <FaRegBookmark />
-            </button>
+            <div className="bg-gray-100 pt-3 pb-2 px-3 mb-2 w-fitbg-right inline-block">
+              <button
+                onClick={() => addToUser(currentUser, id)}
+                className="btn-save text-orange-500"
+              >
+                <FaRegBookmark />
+              </button>
+            </div>
+            <div className="text-sm text-green-500 font-semibold">
+              Ajouter à collection
+            </div>
           </>
         );
       } else {
         //*Si déjà enregistré
         return (
           <>
-            <button
-              onClick={() => removeToUser(currentUser, id)}
-              className="btn-save text-orange-500"
-            >
-              <FaBookmark />
-            </button>
+            <div className="bg-gray-100 pt-3 pb-2 px-3 mb-2 w-fitbg-right inline-block">
+              <button
+                onClick={() => removeToUser(currentUser, id)}
+                className="btn-save text-orange-500"
+              >
+                <FaBookmark />
+              </button>
+            </div>
+            <div className="text-sm text-green-500 font-semibold">
+              Dans la collection
+            </div>
           </>
         );
       }
     } else {
-      //*Si pas connecté
+
       return (
+        //*Si pas connecté
         <>
-          <div class="alert alert-danger" role="alert">
-            Vous devez être connecté pour ajouter un favoris
+          <div className="bg-gray-100 pt-3 pb-2 px-3 mb-2 w-fitbg-right inline-block">
+            <button
+              onClick={() => alertFav()}
+              className="btn-save text-orange-500"
+            >
+              <FaBookmark />
+            </button>
+          </div>
+          <div className="text-sm text-green-500 font-semibold">
+          Ajouter à collection
           </div>
         </>
       );
+      // return (
+      //   <>
+      //    <div class="bg-red-200 p-2 rounded text-red-700">
+      //   <div className="flex">
+      //     <FaMapMarkerAlt />
+      //     <div className="pl-1">
+      //       Vous devez être connecté pour voir les coordonnées GPS exactes.
+      //     </div>
+      //   </div>
+      // </div>
+      //   </>
+      // );
     }
   }
 
@@ -246,118 +300,112 @@ function SingleSpot() {
   //   console.log(spots)
   return (
     <>
-    <div className="main">
-      <Nav />
+      <div className="main">
+        <Nav />
 
-      <div className="container-post">
-        {/* <ImageCurrentSpot alt={nameOfSpot} /> */}
+        <div className="container-post">
+          {/* <ImageCurrentSpot alt={nameOfSpot} /> */}
 
-        <div className="content-post">
-          <div className="pr-3 pb-3 flex justify-center bg-neutral-800">
-            <ImageOfCurrentSpot />
-          </div>
-
-          <div className="px-3 py-9 max-w-screen-xl m-auto">
-            {/* {bigboss ? <button onClick={deletePost}>Supprimer</button> : ""} */}
-          
-            
-            
-            <div className="flex flex-row">
-
-            <div className="w-6/12 pr-8">
-              <p className="font-semibold text-lg text-green-500">{spots.inputs.pays}</p>
-              <h1 className="text-4xl text-zinc-700 pb-2">
-                {spots.inputs.name}
-                </h1>
-                <div className="latlon flex pb-1 text-sm text-orange-500">
-                <div className="flex">
-                  <FaMapMarkerAlt />
-                </div>
-                <div className="flex pl-1">
-                  {user
-                    ? spots.lat.toFixed(5) + " - " + spots.lon.toFixed(5)
-                    : GeoCodeHide()}
-                </div>
-              </div>
-              
-              <div className="py-3  text-justify">
-                <h2 className="font-semibold text-lg pb-1 text-zinc-700">
-                  Description du lieu
-                </h2>
-                <p className="text-zinc-500">{spots.inputs.body}</p>
-                </div>
-                <div className="py-3  text-justify">
-                <h2 className="font-semibold text-lg pb-1 text-zinc-700">
-                  Quel est le matériel conseillé ?
-                </h2>
-                <p className="text-zinc-500">{spots.inputs.conseil}</p>
-              </div>
-              <div className="py-3 text-justify">
-                <h2 className="font-semibold text-lg pb-1 text-zinc-700">
-                  Accès au spot photo
-                </h2>
-              </div>
+          <div className="content-post">
+            <div className="pr-3 pb-3 flex justify-center bg-neutral-800">
+              <ImageOfCurrentSpot />
             </div>
-          
-              <div className="w-6/12">
-              <div className="text-right text-3xl pb-11 pt-8">{BookmarkAllready()}</div>
-             
 
-              {/* {spots.lat}, {spots.lon} */}
-              <SunsetAndSunriseTime
-                latitude={latitude}
-                longitude={longitude}
-                perfectMoment={perfectMoment}
-              />
-              
-                {infoUserWhoAdd}
-                <div className="likebtn-global">
-                {/* <button className="btn-heart" onClick={() => setCount(count + 1)}>
+            <div className="px-3 py-9 max-w-screen-xl m-auto">
+              {/* {bigboss ? <button onClick={deletePost}>Supprimer</button> : ""} */}
+
+              <div className="flex flex-row">
+                <div className="w-6/12 pr-8">
+                  <p className="font-semibold text-lg text-green-500">
+                    {spots.inputs.pays}
+                  </p>
+                  <h1 className="text-4xl text-zinc-700 pb-2">
+                    {spots.inputs.name}
+                  </h1>
+                  <div className="latlon flex pb-1 text-sm text-orange-500">
+                    <div className="flex pl-1">
+                      {user ? GeoCodeShow() : GeoCodeHide()}
+                    </div>
+                  </div>
+
+                  <div className="py-3  text-justify">
+                    <h2 className="font-semibold text-lg pb-1 text-zinc-700">
+                      Description du lieu
+                    </h2>
+                    <p className="text-zinc-500">{spots.inputs.body}</p>
+                  </div>
+                  <div className="py-3  text-justify">
+                    <h2 className="font-semibold text-lg pb-1 text-zinc-700">
+                      Quel est le matériel conseillé ?
+                    </h2>
+                    <p className="text-zinc-500">{spots.inputs.conseil}</p>
+                  </div>
+                  <div className="py-3 text-justify">
+                    <h2 className="font-semibold text-lg pb-1 text-zinc-700">
+                      Accès au spot photo
+                    </h2>
+                  </div>
+                </div>
+
+                <div className="w-6/12">
+                  <div className="text-right text-3xl pb-9 pt-6">
+                    {BookmarkAllready()}
+                  </div>
+
+                  {/* {spots.lat}, {spots.lon} */}
+                  <SunsetAndSunriseTime
+                    latitude={latitude}
+                    longitude={longitude}
+                    perfectMoment={perfectMoment}
+                  />
+
+                  {infoUserWhoAdd}
+                  <div className="likebtn-global">
+                    {/* <button className="btn-heart" onClick={() => setCount(count + 1)}>
               <FaHeart className="heart-icon" />
             </button> */}
 
-                <input
-                  id="heart"
-                  type="checkbox"
-                  onChange={AddLike}
-                  ref={Like}
-                  onClick={handleIncrementCount}
-                  // onClick={() => setCount(+spot.nbLike + 1)}
-                  value={+spots.nbLike + 1}
-                />
-                <div className="row">
-                  {
-                    //Check if message failed
-                    count === null ? (
-                      <div className="text-red-500">
-                        {" "}
-                        <label htmlFor="heart ">❤</label> {spots.nbLike}{" "}
-                        personnes ont aimé ce spot
-                      </div>
-                    ) : (
-                      <div>
-                        {" "}
-                        <label htmlFor="heart" className="redHeart">
-                          ❤
-                        </label>
-                        {count} personnes ont aimé ce spot
-                      </div>
-                    )
-                  }
-                </div>
-                {/* <label htmlFor="heart">❤</label>  
+                    <input
+                      id="heart"
+                      type="checkbox"
+                      onChange={AddLike}
+                      ref={Like}
+                      onClick={handleIncrementCount}
+                      // onClick={() => setCount(+spot.nbLike + 1)}
+                      value={+spots.nbLike + 1}
+                    />
+                    <div className="row">
+                      {
+                        //Check if message failed
+                        count === null ? (
+                          <div className="text-red-500">
+                            {" "}
+                            <label htmlFor="heart ">❤</label> {spots.nbLike}{" "}
+                            personnes ont aimé ce spot
+                          </div>
+                        ) : (
+                          <div>
+                            {" "}
+                            <label htmlFor="heart" className="redHeart">
+                              ❤
+                            </label>
+                            {count} personnes ont aimé ce spot
+                          </div>
+                        )
+                      }
+                    </div>
+                    {/* <label htmlFor="heart">❤</label>  
               {(count === null ? spots.nbLike : count)} personnes ont aimé ce spot */}
+                  </div>
+                </div>
               </div>
-              </div>
-              
-              
+            </div>
           </div>
         </div>
+        <div className="max-w-screen-xl m-auto mb-10 py-3 px-3">
+          <MapOfSingleSpot />
         </div>
-        </div>
-      <div className="max-w-screen-xl m-auto pt-3 mb-10 py-3"><MapOfSingleSpot /></div>
-
-    </div>
+      </div>
       <Footer />
     </>
   );

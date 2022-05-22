@@ -56,10 +56,11 @@ function SunsetAndSunriseTime({ latitude, longitude, perfectMoment }) {
   } else {
     return (
       <>
-        <h2 className="font-semibold text-lg pb-2 text-zinc-700"> Est-ce le bon moment pour faire une photo ?</h2>
+        
       <div className="bg-gray-100 p-6">
-        <h2 className="text-base pt-3 pl-6 text-zinc-700 font-semibold flex">
-        </h2>
+         
+          <h2 className="font-semibold text-lg pb-2 pl-2 text-zinc-700"> Infos pratiques</h2>
+        
         
         <div className="flex flex-row text-sm ">
        
@@ -88,8 +89,8 @@ function SunsetAndSunriseTime({ latitude, longitude, perfectMoment }) {
  
  <div class="table-row-group">
    <div class="table-row">
-     <div class="table-cell ...">Météo actuellement</div>
-     <div class="table-cell ..."> <img
+     <div class="table-cell ">Météo actuellement</div>
+     <div class="table-cell "> <img
             src={`http://openweathermap.org/img/wn/${weather}.png`}
             alt="picto-meteo"
             className="w-8 h-8 "
@@ -97,24 +98,24 @@ function SunsetAndSunriseTime({ latitude, longitude, perfectMoment }) {
             /></div>
    </div>
    <div class="table-row">
-     <div class="table-cell ...">Température</div>
-     <div class="table-cell ...">{temperature}°C</div>
+     <div class="table-cell">Température</div>
+     <div class="table-cell">{temperature}°C</div>
    </div>
    <div class="table-row">
-         <div class="table-cell ...">Ressenti</div>
-         <div class="table-cell ...">{feelTemperature}°C</div>
+         <div class="table-cell">Ressenti</div>
+         <div class="table-cell">{feelTemperature}°C</div>
    </div>
    <div class="table-row">
-     <div class="table-cell ...">Heure coucher de soleil</div>
-     <div class="table-cell ...">{`${hourOfSunset} h ${minuteOfSunset} min`}</div>
+     <div class="table-cell">Heure coucher de soleil</div>
+     <div class="table-cell">{`${hourOfSunset} h ${minuteOfSunset} min`}</div>
    </div>
    <div class="table-row">
-     <div class="table-cell ...">Heure lever de soleil</div>
-     <div class="table-cell ...">{`${hourOfSunrise} h ${minuteOfSunrise} min`}</div>
+     <div class="table-cell">Heure lever de soleil</div>
+     <div class="table-cell">{`${hourOfSunrise} h ${minuteOfSunrise} min`}</div>
    </div>
    <div class="table-row">
-     <div class="table-cell ...">Moment idéal pour une photo</div>
-     <div class="table-cell ...">{ perfectMoment }</div>
+     <div class="table-cell">Moment idéal pour une photo</div>
+     <div class="table-cell">{ perfectMoment }</div>
    </div>
  </div>
 </div>

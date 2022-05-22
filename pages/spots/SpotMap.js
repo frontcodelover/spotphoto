@@ -2,9 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 // import { useParams } from "react-router";
-import { db } from "../firebase/firebase";
+import { useAuth, db, auth } from "../firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { useAuthState } from "react-firebase-hooks/auth";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
@@ -14,15 +15,16 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 // import Icon from "./IconSingle";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 export default function spotmap() {
   // //On récupère les paramètres de l'ID de l'URL
   const [spot, setSpot] = useState({ name: "Pas de data geo..." });
   const [position, setPosition] = useState([]);
-  const [isBrowser, setIsBrowser] = useState(false);
   const [spotName, setSpotName] = useState("");
   const [pays, setPays] = useState("");
   // // const { id } = useParams();
+  const user = useAuthState(auth);
   const router = useRouter();
   const { id } = router.query;
   // console.log(id);
@@ -59,7 +61,7 @@ export default function spotmap() {
       }
     };
     fetchLatLon();
-  }, [id]);
+  }, [id, user]);
   
   // console.log(position)
   //Le Marker
@@ -75,10 +77,27 @@ export default function spotmap() {
     <>
       {
         <div className="map-single">
-          {position.length !== 0 &&  ( 
-            <MapWithNoSSR position={position} zoom={10} minZoom={4} spotName={spotName} pays={pays}/>
-          
-          )} 
+
+          {user[0] != null ? 
+            position.length !== 0 && ( 
+              <div className="map-single">
+                <MapWithNoSSR position={position} zoom={12} minZoom={3} spotName={spotName} pays={pays} />
+                </div>
+            )
+            :
+            position.length !== 0 && ( 
+              <div className="relative">
+
+              <div className="map-single blur relative grayscale">
+                <MapWithNoSSR position={position} zoom={12} minZoom={3} spotName={spotName} pays={pays} />
+                </div>
+                <div className="absolute z-20 py-5 top-20 bg-red-200 w-full">
+                  <div className="text-center text-red-600 text-xl">
+                  <Link href="/account/"><a className="underline">Connectez-vous</a></Link> pour voir la carte                 
+                  </div>
+                </div>
+              </div>
+            )}
          
         </div>
       }
