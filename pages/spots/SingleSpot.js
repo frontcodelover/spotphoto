@@ -12,10 +12,8 @@ import {
   arrayUnion,
   arrayRemove,
 } from "firebase/firestore";
-// import { useParams } from 'react-router';
 import { useAuth, db, auth } from "../firebase/firebase";
 import {
-  FaRegClock,
   FaMapMarkerAlt,
   FaBookmark,
   FaRegBookmark,
@@ -39,7 +37,6 @@ function SingleSpot() {
   const [infoUserWhoAdd, setInfoUserWhoAdd] = useState("");
   const router = useRouter();
   const { id } = router.query;
-  // const { id } = useParams();
   const currentUser = useAuth({});
   const Like = useRef(null);
   const [user, load] = useAuthState(auth);
@@ -142,18 +139,6 @@ function SingleSpot() {
           </div>
         </>
       );
-      // return (
-      //   <>
-      //    <div class="bg-red-200 p-2 rounded text-red-700">
-      //   <div className="flex">
-      //     <FaMapMarkerAlt />
-      //     <div className="pl-1">
-      //       Vous devez être connecté pour voir les coordonnées GPS exactes.
-      //     </div>
-      //   </div>
-      // </div>
-      //   </>
-      // );
     }
   }
 
@@ -317,7 +302,7 @@ function SingleSpot() {
               <div className="flex flex-row">
                 <div className="w-6/12 pr-8">
                   <p className="font-semibold text-lg text-green-500">
-                    {spots.inputs.pays}
+                    {spots.inputs?.country?.label}
                   </p>
                   <h1 className="text-4xl text-zinc-700 pb-2">
                     {spots.inputs.name}
@@ -344,6 +329,7 @@ function SingleSpot() {
                     <h2 className="font-semibold text-lg pb-1 text-zinc-700">
                       Accès au spot photo
                     </h2>
+                    <p className="text-zinc-500">{spots.inputs?.acces}</p>
                   </div>
                 </div>
 

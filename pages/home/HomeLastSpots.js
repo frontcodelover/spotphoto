@@ -37,7 +37,7 @@ export default function IndexBanner() {
       <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
         {spots.map(
           (spot, index) =>
-            index < 8 &&
+            index < 15 &&
             spot.data.published && (
               <div key={spot.id} className="">
                 {/* AJOUTER UN ATL POUR L'IMAGE AVEC LES PROPS */}
