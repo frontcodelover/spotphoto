@@ -1,33 +1,23 @@
 //https://dev.to/tsaxena4k/integrating-next-js-with-leaflet-js-mapbox-1351
 
 import React, { useState, useEffect } from "react";
-// import { useParams } from "react-router";
-import { useAuth, db, auth } from "../firebase/firebase";
+import { db, auth } from "../firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { useAuthState } from "react-firebase-hooks/auth";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
-import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css'
-import 'leaflet-defaulticon-compatibility';
-// import icon from "leaflet/dist/images/marker-icon.png";
-import iconShadow from "leaflet/dist/images/marker-shadow.png";
-// import Icon from "./IconSingle";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
 export default function spotmap() {
-  // //On récupère les paramètres de l'ID de l'URL
+
   const [spot, setSpot] = useState({ name: "Pas de data geo..." });
   const [position, setPosition] = useState([]);
   const [spotName, setSpotName] = useState("");
   const [pays, setPays] = useState("");
-  // // const { id } = useParams();
   const user = useAuthState(auth);
   const router = useRouter();
   const { id } = router.query;
-  // console.log(id);
+
 
 
   const MapWithNoSSR = dynamic(() => import("./Map"), {

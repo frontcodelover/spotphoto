@@ -37,7 +37,7 @@ export default function IndexBanner() {
       <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
         {spots.map(
           (spot, index) =>
-            index < 4 &&
+            index < 8 &&
             spot.data.published && (
               <div key={spot.id} className="">
                 {/* AJOUTER UN ATL POUR L'IMAGE AVEC LES PROPS */}
@@ -51,7 +51,7 @@ export default function IndexBanner() {
                     className="link-dep"
                     href={`/departement/${spot.data.inputs.departementLower}`}
                   >
-                    <FaMapMarkerAlt /> {spot.data.inputs.pays}
+                    <FaMapMarkerAlt /> {spot.data.inputs?.country?.label}
                   </a>
                 </div>
               </div>
