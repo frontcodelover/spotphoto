@@ -1,47 +1,25 @@
-import React from 'react'
-import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase/firebase";
+import React from "react";
+import { collection, getDocs } from "firebase/firestore";
+import Coucou from "../../components/coucou";
 
-export const getStaticProps = async (context) => {
-    const id = context.params.id
-  
-    console.log('id is')
-    console.log(id)
-  
-    let spot = {}
-  
-    try {
-      const ref = collection(db, "spots");
+export async function getStaticProps() {
+  const spotsCollectionRef = collection(db, "spots");
+  const data = await getDocs(spotsCollectionRef);
+  const spots = data?.docs?.map((doc) => ({
+    data: doc.data(),
+    id: doc.id,
+    uid: doc.data().uid,
+  }));
 
-      
-      const qsnapshot = await getDocs(ref)
-      console.log(qsnapshot)
-      qsnapshot.forEach((doc) => {
-        const data = doc.data()
-        console.log('the title is...')
-        console.log(data)
-      })
-      return {
-        props: { spot: spot },
-        revalidate: 1,
-      }
-    } catch (e) {
-      console.log(e)
-    }
-  }
-  
-  const Details = ({ spot }) => {
-    // console.log('posting...')
-    // console.log(spot)
-    return (
-      <div>
-        <div className='mx-auto'>
-          <h2>Post Details Page</h2>
-          <h3 className='text-black'>{spot}</h3>
-          <h4>Details here</h4>
-        </div>
-      </div>
-    )
-  }
+  return {
+    props: {
+      spots: spots || null,
+    },
+  };
+}
 
-  export default Details
+export default function Details({ spots }) {
+  return (
+    <Coucou spots={spots} />
+)}
