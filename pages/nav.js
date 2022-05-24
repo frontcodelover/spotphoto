@@ -50,6 +50,11 @@ export default function Nav() {
                 <a className="hover-underline">Qui sommes-nous ?</a>
               </Link>
             </li>
+            <li>
+              <Link href="/ssr">
+                <a className="hover-underline">Testeur SSR</a>
+              </Link>
+            </li>
           </ul>
         </nav>
       </header>
