@@ -362,19 +362,19 @@ function SingleSpot() {
                       {
                         //Check if message failed
                         count === null ? (
-                          <div className="text-red-500">
+                          <>
                             {" "}
                             <label htmlFor="heart ">❤</label> {spots.nbLike}{" "}
                             personnes ont aimé ce spot
-                          </div>
+                          </>
                         ) : (
-                          <div>
+                          <>
                             {" "}
                             <label htmlFor="heart" className="redHeart">
                               ❤
                             </label>
                             {count} personnes ont aimé ce spot
-                          </div>
+                          </>
                         )
                       }
                     </div>
