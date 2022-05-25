@@ -14,7 +14,7 @@ import Register from "./Register";
 import ProfilUpdate from "./ProfilUpdate";
 import {collection, getDocs } from "firebase/firestore"; 
 import {FaGlobeAmericas, FaBirthdayCake, FaMapMarkerAlt} from "react-icons/fa"
-import Nav from "../nav";
+import Nav from "../../components/nav";
 import Link from "next/link";
 import { useRouter } from "next/router";
 

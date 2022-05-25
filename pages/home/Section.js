@@ -9,7 +9,7 @@ export class Section extends Component {
       <div className='flex-items'>
         <div className="home-txt">
           <h1 className="baseline">Vivez votre passion<br /></h1>
-          <p><span className="text-home-photo">Trouvez les meilleurs spots photos</span></p>
+          <p><span className="text-home-photo text-2xl">Trouvez les meilleurs spots photos</span></p>
           <ButtonHome />
         </div>
       </div>

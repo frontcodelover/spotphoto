@@ -23,7 +23,7 @@ import SunsetAndSunriseTime from "./SunsetAndSunriseTime";
 import { useRouter } from "next/router";
 import ImageOfCurrentSpot from "./ImageOfCurrentSpot";
 import dynamic from "next/dynamic";
-import Nav from "../nav";
+import Nav from "../../components/nav";
 import Footer from "../footer";
 
 function SingleSpot() {
@@ -286,7 +286,7 @@ function SingleSpot() {
   return (
     <>
       <div className="main">
-        <Nav />
+        
 
         <div className="container-post">
           {/* <ImageCurrentSpot alt={nameOfSpot} /> */}
@@ -299,8 +299,8 @@ function SingleSpot() {
             <div className="px-3 py-9 max-w-screen-xl m-auto">
               {/* {bigboss ? <button onClick={deletePost}>Supprimer</button> : ""} */}
 
-              <div className="flex flex-row">
-                <div className="w-6/12 pr-8">
+              <div className="flex flex-col md:flex-row lg:flex-row">
+                <div className="w-screen pr-8 lg:w-6/12 md:w-6/12">
                   <p className="font-semibold text-lg text-green-500">
                     {spots.inputs?.country?.label}
                   </p>
@@ -333,8 +333,8 @@ function SingleSpot() {
                   </div>
                 </div>
 
-                <div className="w-6/12">
-                  <div className="text-right text-3xl pb-9 pt-6">
+                <div className="w-screen pr-8 lg:w-6/12 md:w-6/12">
+                  <div className="text-right text-3xl pb-9">
                     {BookmarkAllready()}
                   </div>
 

@@ -32,7 +32,7 @@ export default function IndexBanner() {
     <>
       <div className="title-section">
         <p className="head-title-banner">Votre prochaine photo</p>
-        <h2 className="title-banner">Les derniers lieux ajoutés</h2>
+        <h2 className="text-3xl pb-6 text-green-500">Les derniers lieux ajoutés</h2>
       </div>
       <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
         {spots.map(

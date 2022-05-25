@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import Nav from "./nav";
+import Nav from ".././components/nav";
 import Footer from "./footer";
 import styles from "../styles/Home.module.css";
 import React, { useState } from "react";

@@ -6,7 +6,6 @@ function ImageForHomeSpot(photoURL) {
     const [url, setUrl] = useState('')
         useEffect(() => {
     
-        console.log(photoURL.photoURL)
   
         const storage = getStorage();
         const prePath = "spots" + '/' + photoURL.photoURL + ".jpg";

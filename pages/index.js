@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebase";
 import HomeIndex from "./home/HomeIndex";
-import Nav from "./nav";
+import Nav from "../components/nav";
 import Footer from "./footer";
 
 export default function Home() {

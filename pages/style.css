@@ -111,6 +111,7 @@ h1.baseline {
   font-size: 5em;
   font-weight: 600;
   color: #fff;
+  line-height: 80px;
 }
 
 .flex-container {
@@ -396,7 +397,6 @@ button.btn-logout {
   width: 100%;
   object-fit: cover;
   height: 300px;
-  border-radius: 10px;
   box-shadow: 0 0px 2px 0 rgb(8 11 14 / 15%),
     0 6px 10px 0px rgb(8 11 14 / 13%);
 }
