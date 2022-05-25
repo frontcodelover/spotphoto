@@ -17,6 +17,7 @@ import {FaGlobeAmericas, FaBirthdayCake, FaMapMarkerAlt} from "react-icons/fa"
 import Nav from "../../components/nav";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Footer from "../../components/footer";
 
 
 export default function UserBoard() {
@@ -175,6 +176,7 @@ export default function UserBoard() {
 
           </div>
         </div>
+        <Footer />
         </>
           }
       </>

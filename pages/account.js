@@ -1,5 +1,6 @@
 import React from "react";
 import Nav from ".././components/nav";
+import Footer from "../components/footer";
 import Register from "./profil/Register";
 
 export default function account() {
@@ -7,6 +8,7 @@ export default function account() {
     <>
       <Nav />
       <Register />
+      <Footer />
     </>
   );
 }

@@ -10,10 +10,11 @@ import CountryHighlightThree from "./CountryHighlightThree";
 export default function HomeIndex() {
   return (
     <>
-      <div className="flex-container">
+      
         <VideoHome />
         <Section />
-      </div>
+
+
       <div className="body-size">
         <HomeLastSpots />
         <AboutHome />

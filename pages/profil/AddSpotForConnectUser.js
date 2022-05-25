@@ -89,8 +89,16 @@ export default function AddSpotForConnectUser() {
     upload(photo);
   }
   function handleChangeSetPhoto(e) {
-    if (e.target.files[0]) {
-      setPhoto(e.target.files[0]);
+    if (e.target.files[0].type === "image/jpeg") {
+      if (e.target.files[0].size < 5242880) {
+        if (e.target.files[0]) {
+          setPhoto(e.target.files[0]);
+        }
+      } else {
+        alert("Votre photo ne doit pas excéder 5 mo.");
+      }
+    } else {
+      alert("Merci de selectionner uniquement un fichier image .jpg");
     }
   }
 
@@ -100,13 +108,17 @@ export default function AddSpotForConnectUser() {
         <div className="main body-size">
           <div className="containerAddPost">
             <div className="titleAndMap">
-              <h1 className="text-4xl text-zinc-700 pb-2">
+              <h1 className="text-4xl text-zinc-700 mb-6 flex">
                 <FaRegEdit /> Ajouter un spot
               </h1>
 
-              <h2 className="font-semibold text-lg pb-1 text-zinc-700">1. Choisissez votre image</h2>
+              <NoticeAddSpot />
+
+              <h2 className="font-semibold text-lg my-6 text-zinc-700">
+                1. Choisissez votre image
+              </h2>
               <div className="fieldsAddPic">
-                <div className="change-img">
+                <div className="text-sm my-4 py-2 text-center px-4 rounded-full border-0 text-sm font-semibold bg-green-500 text-white hover:bg-green-600 w-44 hover:cursor-pointer">
                   <label htmlFor="file" className="labelFileAddPic">
                     Choisir une image
                   </label>
@@ -121,7 +133,7 @@ export default function AddSpotForConnectUser() {
                 <br />
                 {/* <button onClick={handleClick} className="btn">Envoyer</button> */}
               </div>
-              <h2 className="font-semibold text-lg pb-1 text-zinc-700">
+              <h2 className="font-semibold text-lg  text-zinc-700 my-6 ">
                 2. Déplacez le marqueur sur le lieu exact de la prise de vue
               </h2>
               <MapWithNoSSR
@@ -136,7 +148,7 @@ export default function AddSpotForConnectUser() {
             </div>
 
             <div className="formuseredit">
-              <h2 className="font-semibold text-lg pb-1 text-zinc-700">
+              <h2 className="font-semibold text-lg my-6  text-zinc-700">
                 3. Ajoutez les infos de votre spot
               </h2>
 
@@ -317,7 +329,6 @@ export default function AddSpotForConnectUser() {
               {/* <UploadPicture /> */}
             </div>
           </div>
-          <NoticeAddSpot />
         </div>
       )}
       {!currentUser && (

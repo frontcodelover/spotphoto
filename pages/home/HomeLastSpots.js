@@ -32,9 +32,9 @@ export default function IndexBanner() {
     <>
       <div className="title-section">
         <p className="head-title-banner">Votre prochaine photo</p>
-        <h2 className="text-3xl pb-6 text-green-500">Les derniers lieux ajoutés</h2>
+        <h2 className="text-3xl pb-9 text-green-500 font-semibold">Les derniers lieux ajoutés</h2>
       </div>
-      <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {spots.map(
           (spot, index) =>
             index < 15 &&
@@ -42,8 +42,8 @@ export default function IndexBanner() {
               <div key={spot.id} className="">
                 {/* AJOUTER UN ATL POUR L'IMAGE AVEC LES PROPS */}
                 <ImageForHomeSpot photoURL={spot.uid} />
-                <div className="">
-                  <a href={`/spots/${spot.id}`} className="spot-nom-two">
+                <div className="my-2">
+                  <a href={`/spots/${spot.id}`} className="text-lg  font-semibold">
                     {" "}
                     {spot.data.inputs.name}
                   </a>
@@ -51,7 +51,7 @@ export default function IndexBanner() {
                     className="link-dep"
                     href={`/departement/${spot.data.inputs.departementLower}`}
                   >
-                    <FaMapMarkerAlt /> {spot.data.inputs?.country?.label}
+                    <div className="flex text-md text-green-500"><FaMapMarkerAlt className="text-xl py-1" /> <div className="pl-1">{spot.data.inputs?.country?.label}</div></div>
                   </a>
                 </div>
               </div>

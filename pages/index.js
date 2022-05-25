@@ -7,7 +7,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebase";
 import HomeIndex from "./home/HomeIndex";
 import Nav from "../components/nav";
-import Footer from "./footer";
+import Footer from "./../components/footer";
 
 export default function Home() {
   return (

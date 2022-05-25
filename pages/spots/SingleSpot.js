@@ -18,13 +18,11 @@ import {
   FaBookmark,
   FaRegBookmark,
 } from "react-icons/fa";
-// import spotmap from "./spotmap";
 import SunsetAndSunriseTime from "./SunsetAndSunriseTime";
 import { useRouter } from "next/router";
 import ImageOfCurrentSpot from "./ImageOfCurrentSpot";
 import dynamic from "next/dynamic";
-import Nav from "../../components/nav";
-import Footer from "../footer";
+import Footer from "../../components/footer";
 
 function SingleSpot() {
   const MapOfSingleSpot = dynamic(() => import("./spotmap"), { ssr: false });
