@@ -112,15 +112,15 @@ export default function UserBoard() {
                <div className="picuser">
                 <Profile />
             </div>
-            <div className="infouser">
+            <div className="">
              
-              <h1 className="titleuser">{user.inputs.pseudo ? user.inputs.pseudo : "Non renseigné"}</h1>
-                <p className="biouser"> {user.inputs.bio ? user.inputs.bio : "Vous n'avez pas encore renseigné votre bio"} </p>
+              <h1 className="text-2xl">{user.inputs.pseudo ? user.inputs.pseudo : "Non renseigné"}</h1>
+                <p className="text-lg pt-3 pb-9"> {user.inputs.bio ? user.inputs.bio : "Vous n'avez pas encore renseigné votre bio"} </p>
                 <div className="infouser-detail">
 
-                <FaBirthdayCake /> {user.inputs.age ? user.inputs.age : "Non renseigné"} <br />
-                <FaGlobeAmericas /> {user.inputs.personnalLink ? user.inputs.personnalLink : "Non renseigné"} <br />
-                <FaMapMarkerAlt /> {user.inputs.codePostal ? user.inputs.codePostal : "non renseigné"} {user.inputs.ville ? user.inputs.ville : ""}
+                <div className="flex align-middle"><FaBirthdayCake className="pr-2 pt-2 text-xl"/> {user.inputs.age ? user.inputs.age : "Non renseigné"} <br /></div>
+                <div className="flex align-middle"><FaGlobeAmericas className="pr-2 pt-2 text-xl"/> {user.inputs.personnalLink ? user.inputs.personnalLink : "Non renseigné"} <br /></div>
+                <div className="flex align-middle"><FaMapMarkerAlt className="pr-2 pt-2 text-xl"/> {user.inputs.codePostal ? user.inputs.codePostal : "non renseigné"} {user.inputs.ville ? user.inputs.ville : ""}</div>
               </div>
             </div>
             </div>
