@@ -4,14 +4,14 @@ import { FaRegEdit } from "react-icons/fa";
 import { useRouter } from "next/router";
 
 export default function () {
-    const router = useRouter()
-    useEffect(() => {
-        setTimeout(() => {
-            router.push('/account')
+    // const router = useRouter()
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         router.push('/account')
 
-        },5000
-        )
-    },[])
+    //     },5000
+    //     )
+    // },[])
 
 
   return (
