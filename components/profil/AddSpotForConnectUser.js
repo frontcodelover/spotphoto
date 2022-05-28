@@ -76,10 +76,6 @@ export default function AddSpotForConnectUser() {
 
   async function upload(file) {
     const fileRef = ref(storage, "spots/" + uuid + ".jpg");
-    // await updateDoc(doc(db, "spots", uuid), {
-    //     photoURL: uuid + "_spot.png",
-    // }
-    // )
     const snapshot = await uploadBytes(fileRef, file);
     const photoURL = await getDownloadURL(fileRef);
   }
@@ -186,16 +182,6 @@ export default function AddSpotForConnectUser() {
                   placeholder={`Ex : Plage du Paradie`}
                 />
 
-                {/* <p className="label-login"><label className="label-login">Pays </label></p>
-                  <input 
-                  required
-                    name="pays" 
-                    value={inputs.pays || ""} 
-                    onChange={handleChange}
-                    className="input-user"
-                    placeholder="Indiquez le pays"
-                      /> */}
-
                 <p className="label-login">
                   Décrivez votre spot, type de lieu, ce que vous aimez
                 </p>
@@ -248,38 +234,6 @@ export default function AddSpotForConnectUser() {
                   <option value="hiver">Hiver</option>
                 </select>
 
-                {/* <input 
-                  
-                    type="text" 
-                    name="body" 
-                    value={ inputs.inputRef } 
-                    onChange={handleChange}
-                    className="input-user"
-                    placeholder="Décrivez votre spot"
-                  /> */}
-
-                {/* <p className="label-login"><label className="label-login">Quel département ? </label></p>
-                <input 
-                required
-                  type="text" 
-                  name="departement" 
-                  value={inputs.departement} 
-                  onChange={handleChange}
-                  className="input-user"
-                  placeholder="indiquez le département"
-                    /> */}
-
-                {/* <p className="label-login">Quel numéro du département ?</p>
-                <input
-                required
-                type="number"
-                name="numerodep"
-                value={inputs.numerodep}
-                placeholder={`Quel numéro de département?`}
-                className="input-user"
-                onChange={handleChange}
-                /> */}
-
                 <p className="label-login">
                   Votre meilleur conseil pour une photo réussie ?
                 </p>
@@ -292,29 +246,6 @@ export default function AddSpotForConnectUser() {
                   className="border rounded py-2 px-2 w-full border-green-500"
                   onChange={handleChange}
                 />
-
-                {/* <p className="label-login">Quel est l'url de votre image (.jpg/.png)?</p>
-            <input
-            
-            type="text"
-            name="imgUrl"
-            value={inputs.imgUrl} 
-            placeholder={`Quel est l'url de l'image?`}
-            className="input-user"
-            onChange={handleChange}
-            /> */}
-
-                {/* <p className="label-login">Quel est le meilleur moment (lever ou coucher de soleil, marée, autre...)?</p>
-            <input
-                required
-                type="text"
-                name="moment"
-                value={inputs.moment}
-                onChange={handleChange}
-                placeholder={`Quel est le meilleur moment pour une photo?`}
-                className="input-user"
-                />
-            <br /> */}
 
                 <input
                   type="submit"

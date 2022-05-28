@@ -4,8 +4,9 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import Coucou from "../../components/coucou";
 
 export async function getStaticProps() {
-    const spotsCollectionRef = collection(db, "spots");
-    const q = query(spotsCollectionRef, where('pays', 'in', ['inputs']));
+  const spotsCollectionRef = collection(db, "spots");
+  const q = query(spotsCollectionRef, where("label", "==", "France"));
+  console.log(q);
 
   const data = await getDocs(q);
   const spots = data?.docs?.map((doc) => ({
