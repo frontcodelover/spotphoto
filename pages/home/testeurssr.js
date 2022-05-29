@@ -5,7 +5,7 @@ import Coucou from "../../components/coucou";
 
 export async function getStaticProps() {
   const spotsCollectionRef = collection(db, "spots");
-  const q = query(spotsCollectionRef, where("label", "==", "France"));
+  const q = query(spotsCollectionRef, where("inputs.country.label", '==', "Italy"));
   console.log(q);
 
   const data = await getDocs(q);

@@ -8,14 +8,57 @@ import { auth } from "./firebase/firebase";
 import HomeIndex from "./home/HomeIndex";
 import Nav from "../components/nav";
 import Footer from "./../components/footer";
+import { db } from "./firebase/firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import CountryHighLight from "../components/home/CountryHighLight";
 
-export default function Home() {
+async function getCountryData(pays) {
+  const spotsCollectionRef = collection(db, "spots");
+  const queriedCountry = query(spotsCollectionRef, where("inputs.country.label", "==", pays));
+  const data = await getDocs(queriedCountry);
+  const spots = data?.docs?.map((doc) => ({
+    data: doc.data(),
+    id: doc.id,
+    uid: doc.data().uid,
+  }));
+  return spots;
+}
+
+async function getCountriesData() {
+const italy = getCountryData('Italy');
+const portugal = getCountryData('Portugal');
+const france = getCountryData('France');
+
+const data = await Promise.allSettled([italy, portugal, france]);
+return data;
+}
+
+export async function getStaticProps() {
+  const data = await getCountriesData()
+  console.log(data)
+  return {
+    props: {
+      spots: {
+        italyData: data[0].value,
+        portugalData: data[1].value,
+        franceData: data[2].value,
+      }
+    }
+  }
+}
+
+
+
+export default function Home({spots}) {
   return (
     <div className={styles.container}>
       <Nav />
 
+      {/* {console.log(spots)} */}
       <main className="main">
         <HomeIndex />
+        {/* {console.log(spots.italy)} */}
+        <CountryHighLight spots={spots.franceData} />
       </main>
 
       <footer className={styles.footer}>
