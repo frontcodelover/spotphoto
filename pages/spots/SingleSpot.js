@@ -18,14 +18,14 @@ import {
   FaBookmark,
   FaRegBookmark,
 } from "react-icons/fa";
-import SunsetAndSunriseTime from "./SunsetAndSunriseTime";
+import SunsetAndSunriseTime from "../../components/spots/SunsetAndSunriseTime";
 import { useRouter } from "next/router";
-import ImageOfCurrentSpot from "./ImageOfCurrentSpot";
+import ImageOfCurrentSpot from "../../components/spots/ImageOfCurrentSpot";
 import dynamic from "next/dynamic";
 import Footer from "../../components/footer";
 
 function SingleSpot() {
-  const MapOfSingleSpot = dynamic(() => import("./spotmap"), { ssr: false });
+  const MapOfSingleSpot = dynamic(() => import("../../components/spots/SpotMap"), { ssr: false });
   const [spots, setSpot] = useState(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);

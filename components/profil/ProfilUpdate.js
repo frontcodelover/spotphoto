@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { doc, updateDoc  } from "firebase/firestore";
-import { db } from "../firebase/firebase";
+import { db } from "../../pages/firebase/firebase";
 import { getAuth } from "firebase/auth";
 import { FaWrench } from "react-icons/fa"
 

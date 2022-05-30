@@ -11,6 +11,9 @@ import Footer from "./../components/footer";
 import { db } from "./firebase/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import CountryHighLight from "../components/home/CountryHighLight";
+import CountryHighlightOne from "../components/home/CountryHighlightOne";
+import CountryHighlightTwo from "../components/home/CountryHighlightTwo";
+import CountryHighlightThree from "../components/home/CountryHighlightThree";
 
 async function getCountryData(pays) {
   const spotsCollectionRef = collection(db, "spots");
@@ -58,7 +61,12 @@ export default function Home({spots}) {
       <main className="main">
         <HomeIndex />
         {/* {console.log(spots.italy)} */}
+        <CountryHighlightOne />
+        <CountryHighLight spots={spots.italyData} />
+        <CountryHighlightTwo />
         <CountryHighLight spots={spots.franceData} />
+        <CountryHighlightThree />
+        <CountryHighLight spots={spots.portugalData} />
       </main>
 
       <footer className={styles.footer}>

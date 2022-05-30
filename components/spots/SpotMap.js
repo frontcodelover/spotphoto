@@ -1,7 +1,7 @@
 //https://dev.to/tsaxena4k/integrating-next-js-with-leaflet-js-mapbox-1351
 
 import React, { useState, useEffect } from "react";
-import { db, auth } from "../firebase/firebase";
+import { db, auth } from "../../pages/firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";

@@ -1,7 +1,7 @@
-import { db } from "../firebase/firebase";
+import { db } from "../../pages/firebase/firebase";
 import React from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import Coucou from "../../components/coucou";
+import Coucou from "../coucou";
 
 export async function getStaticProps() {
   const spotsCollectionRef = collection(db, "spots");

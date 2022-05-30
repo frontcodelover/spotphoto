@@ -1,9 +1,23 @@
 import { useRef, useMemo } from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, Polyline } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
+import pin from "/public/assets/svg/location.svg"
+
+const limeOptions = { color: 'red' }
+const multiPolyline = [
+  [
+    [-0.012925635333212573, -2.227227341461403],
+    [51.5, -0.1]
+  ],
+  [
+    [-0.01596233405422419, 2.2354259981807987],
+    [51.5, -0.1]
+  ],
+]
+console.log(pin)
 
 const Map = ({
   position,
@@ -28,6 +42,7 @@ const Map = ({
     [setPosition]
   );
 
+
   return (
     <MapContainer
       center={position}
@@ -50,6 +65,8 @@ const Map = ({
         <Popup>
           {spotName} - {pays}
         </Popup>
+
+        <Polyline pathOptions={limeOptions} positions={multiPolyline} />
       </Marker>
     </MapContainer>
   );

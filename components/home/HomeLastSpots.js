@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase/firebase";
+import { db } from "../../pages/firebase/firebase";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import ImageForHomeSpot from "./ImageForHomeSpot";
 

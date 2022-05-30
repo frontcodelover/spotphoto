@@ -9,9 +9,9 @@ import { logout, auth, db } from "../firebase/firebase";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 // import { useNavigate } from "react-router-dom";
-import Profile from "./profil";
-import Register from "./Register";
-import ProfilUpdate from "./ProfilUpdate";
+import Profile from "../../components/profil/profil";
+import Register from "../../components/profil/Register";
+import ProfilUpdate from "../../components/profil/ProfilUpdate";
 import {collection, getDocs } from "firebase/firestore"; 
 import {FaGlobeAmericas, FaBirthdayCake, FaMapMarkerAlt} from "react-icons/fa"
 import Nav from "../../components/nav";

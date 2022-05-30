@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useAuth, upload } from "../firebase/firebase";
+import { useAuth, upload } from "../../pages/firebase/firebase";
 
 export default function Profile() {
   const currentUser = useAuth();

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
 
-import { signup, useAuth, logout, login, auth } from "../firebase/firebase";
+import { signup, useAuth, logout, login, auth } from "../../pages/firebase/firebase";
 import { useRef } from "react";
 import Profile from "./profil";
 

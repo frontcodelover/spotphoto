@@ -3,16 +3,16 @@ import { db } from "../../pages/firebase/firebase";
 import { getAuth } from "firebase/auth";
 import { useAuth } from "../../pages/firebase/firebase";
 import { FaRegEdit } from "react-icons/fa";
-import NoticeAddSpot from "../../pages/profil/NoticeAddSpot";
+import NoticeAddSpot from "./NoticeAddSpot";
 import { nanoid } from "nanoid";
 import { useState, useRef, useMemo } from "react";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
-import { photoStyle } from "../../pages/profil/PhotoStyle";
-import { listOfCountry } from "../../pages/profil/ListOfCountry";
+import { photoStyle } from "./PhotoStyle";
+import { listOfCountry } from "./ListOfCountry";
 import React from "react";
-import MapWithNoSSR from "../../pages/profil/MapWithNoSSR";
+import MapWithNoSSR from "./MapWithNoSSR";
 
 // Validation de formulaire si non empty
 // https://stackoverflow.com/questions/41296668/how-do-i-add-validation-to-the-form-in-my-react-component

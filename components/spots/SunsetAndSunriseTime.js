@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaRegClock } from "react-icons/fa";
-import {OpenWeatherApiKey} from "../firebase/firebase"
+import {OpenWeatherApiKey} from "../../pages/firebase/firebase"
 
 
 function SunsetAndSunriseTime({ latitude, longitude, perfectMoment }) {
