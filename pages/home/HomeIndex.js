@@ -12,14 +12,18 @@ import CountryHighLight from "../../components/home/CountryHighLight";
 
 var SunCalc = require('suncalc');
 var times = SunCalc.getTimes(new Date(), 51.5, -0.1);
+console.log("times")
+console.log(times)
 var sunriseStr = times.sunrise.getHours() + ':' + times.sunrise.getMinutes();
 var sunrisePos = SunCalc.getPosition(times.sunrise, 51.5, -0.1);
 var sunsetPos = SunCalc.getPosition(times.sunset, 51.5, -0.1);
 var sunriseAzimuth = sunrisePos.azimuth * 180 / Math.PI;
+var sunsetAzimuth = sunsetPos.azimuth * 180 / Math.PI;
 
 console.log(sunrisePos)
 console.log(sunsetPos)
 console.log(sunriseAzimuth)
+console.log(sunsetAzimuth)
 
 export async function getStaticProps() {
   const spotsCollectionRef = collection(db, "spots");
