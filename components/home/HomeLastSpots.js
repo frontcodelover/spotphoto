@@ -31,13 +31,13 @@ export default function IndexBanner() {
   return (
     <>
       <div className="title-section">
-        <p className="font-normal text-lg text-zinc-900">Votre prochaine photo</p>
-        <h2 className="text-3xl pb-9 text-green-500 font-semibold">Les derniers lieux ajoutés</h2>
+        <p className="font-semibold text-xl text-zinc-900">Votre prochaine photo</p>
+        <h2 className="text-4xl pb-9 text-green-500 font-bold">Les derniers lieux ajoutés</h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {spots.map(
           (spot, index) =>
-            index < 15 &&
+            index < 13 &&
             spot.data.published && (
               <div key={spot.id} className="">
                 {/* AJOUTER UN ATL POUR L'IMAGE AVEC LES PROPS */}

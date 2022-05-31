@@ -10,10 +10,10 @@ const MapWithNoSSR = ({ draggable, position, setPosition }) => {
     <div className="map-single">
       <MapWithNoSSR
         position={position}
-        zoom={12}
-        minZoom={3}
-        spotName={"undefined"}
-        pays={"undefined"}
+        zoom={13}
+        minZoom={1}
+        spotName={"Déplacer le marker"}
+        pays={"sur le lieu de la photo"}
         draggable={draggable}
         setPosition={setPosition}
       />

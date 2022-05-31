@@ -27,7 +27,6 @@ header {
 .body-size {
   width: 80vw;
   margin: auto;
-  padding: 50px 0 150px;
 }
 
 
@@ -388,10 +387,19 @@ button.btn-logout {
 .home-gallery-img {
   width: 100%;
   object-fit: cover;
+  height: 500px;
+  box-shadow: 0 0px 2px 0 rgb(8 11 14 / 15%),
+    0 6px 10px 0px rgb(8 11 14 / 13%);
+}
+
+.home-hightlight-img {
+  width: 100%;
+  object-fit: cover;
   height: 300px;
   box-shadow: 0 0px 2px 0 rgb(8 11 14 / 15%),
     0 6px 10px 0px rgb(8 11 14 / 13%);
 }
+
 
 /***MAP***/
 .map-single {

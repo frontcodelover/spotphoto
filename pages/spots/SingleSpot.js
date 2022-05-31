@@ -70,7 +70,7 @@ function SingleSpot() {
         <div className="flex">
           <FaMapMarkerAlt />
           <div className="pl-1">
-            {spots.lat.toFixed(5) + " - " + spots.lon.toFixed(5)}
+            {spots.lat.toFixed(5) + ", " + spots.lon.toFixed(5)}
           </div>
         </div>
       </div>
@@ -232,8 +232,8 @@ function SingleSpot() {
         } else {
           setInfoUserWhoAdd(
             infoUser.map((user) => (
-              <div className="add" key="1">
-                Spot ajouté par : {user}
+              <div className="add flex justify-end" key="1">
+                Ajouté par <div className="text-orange-500 font-semibold pl-1">{user}</div>
               </div>
             ))
           );
@@ -290,51 +290,57 @@ function SingleSpot() {
           {/* <ImageCurrentSpot alt={nameOfSpot} /> */}
 
           <div className="content-post">
-            <div className="pr-3 pb-3 flex justify-center bg-neutral-800">
-              <ImageOfCurrentSpot />
-            </div>
-
+           
             <div className="px-3 py-9 max-w-screen-xl m-auto">
               {/* {bigboss ? <button onClick={deletePost}>Supprimer</button> : ""} */}
 
               <div className="flex flex-col md:flex-row lg:flex-row">
                 <div className="w-screen pr-8 lg:w-6/12 md:w-6/12">
-                  <p className="font-semibold text-lg text-green-500">
+                <ImageOfCurrentSpot />
+                  
+
+                  <div className="pr-8 ">
+                  
+                </div>
+                </div>
+
+                <div className="mb-6 lg:w-6/12 md:w-6/12">
+                <div className="text-right text-3xl pb-9 w-1/3 float-right">
+                    {BookmarkAllready()}
+                  </div>
+                <p className="font-semibold text-lg text-green-500">
                     {spots.inputs?.country?.label}
                   </p>
-                  <h1 className="text-4xl text-zinc-700 pb-2">
+                  <h1 className="text-4xl text-zinc-900 pb-4 font-semibold">
                     {spots.inputs.name}
                   </h1>
-                  <div className="latlon flex pb-1 text-sm text-orange-500">
+                  <div className="latlon flex pb-4 text-sm text-orange-500">
                     <div className="flex pl-1">
                       {user ? GeoCodeShow() : GeoCodeHide()}
                     </div>
+                    
                   </div>
 
-                  <div className="py-3  text-justify">
+                  <div className="py-2  text-justify">
                     <h2 className="font-semibold text-lg pb-1 text-zinc-700">
                       Description du lieu
                     </h2>
                     <p className="text-zinc-500">{spots.inputs.body}</p>
                   </div>
-                  <div className="py-3  text-justify">
+                  <div className="py-2  text-justify">
                     <h2 className="font-semibold text-lg pb-1 text-zinc-700">
                       Quel est le matériel conseillé ?
                     </h2>
                     <p className="text-zinc-500">{spots.inputs.conseil}</p>
                   </div>
-                  <div className="py-3 text-justify">
+                  <div className="py-2 text-justify">
                     <h2 className="font-semibold text-lg pb-1 text-zinc-700">
                       Accès au spot photo
                     </h2>
-                    <p className="text-zinc-500">{spots.inputs?.acces}</p>
+                    <p className="text-zinc-500 mb-6">{spots.inputs?.acces}</p>
                   </div>
-                </div>
-
-                <div className="w-screen pr-8 lg:w-6/12 md:w-6/12">
-                  <div className="text-right text-3xl pb-9">
-                    {BookmarkAllready()}
-                  </div>
+                  <div className="text-sm mb-12 text-right">{infoUserWhoAdd}</div>
+                 
 
                   {/* {spots.lat}, {spots.lon} */}
                   <SunsetAndSunriseTime
@@ -343,13 +349,13 @@ function SingleSpot() {
                     perfectMoment={perfectMoment}
                   />
 
-                  {infoUserWhoAdd}
-                  <div className="likebtn-global">
+                  
+                  {/* <div className="likebtn-global"> */}
                     {/* <button className="btn-heart" onClick={() => setCount(count + 1)}>
               <FaHeart className="heart-icon" />
             </button> */}
 
-                    <input
+                    {/* <input
                       id="heart"
                       type="checkbox"
                       onChange={AddLike}
@@ -357,8 +363,8 @@ function SingleSpot() {
                       onClick={handleIncrementCount}
                       // onClick={() => setCount(+spot.nbLike + 1)}
                       value={+spots.nbLike + 1}
-                    />
-                    <div className="row">
+                    /> */}
+                    {/* <div className="row">
                       {
                         //Check if message failed
                         count === null ? (
@@ -377,11 +383,14 @@ function SingleSpot() {
                           </>
                         )
                       }
-                    </div>
+                    </div> */}
                     {/* <label htmlFor="heart">❤</label>  
               {(count === null ? spots.nbLike : count)} personnes ont aimé ce spot */}
-                  </div>
-                </div>
+                  {/* </div> */}
+            </div>
+
+
+               
               </div>
             </div>
           </div>

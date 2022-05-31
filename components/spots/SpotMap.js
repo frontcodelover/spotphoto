@@ -32,12 +32,13 @@ export default function spotmap() {
         const spotTmp = docss.data();
         setSpot(spotTmp);
 
+
         spotTmp.inputs.name 
           ? setSpotName(spotTmp.inputs.name)
           : setSpotName("Pas de nom");
 
-        spotTmp.inputs.pays
-          ? setPays(spotTmp.inputs.pays)
+        spotTmp.inputs.country.label
+          ? setPays(spotTmp.inputs.country.label)
           : setPays("Pas de pays");
         
         spotTmp.lat && spotTmp.lon

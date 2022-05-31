@@ -9,7 +9,7 @@ function SunsetAndSunriseTime({ latitude, longitude, perfectMoment }) {
   const [dataFromOpenWeather, setDataFromOpenWeather] = useState([{}]);
   const [timeZone, setTimeZone] = useState(null);
   const [temperature, setTemperature] = useState(null);
-  const [feelTemperature, setFeelTemperature] = useState(null);
+
   const [weather, setWeather] = useState(null);
 
 
@@ -29,7 +29,7 @@ function SunsetAndSunriseTime({ latitude, longitude, perfectMoment }) {
 
           setTemperature(temperatureData.temp);
           setTimeZone(timezone);
-          setFeelTemperature(temperatureData.feels_like);
+
           setWeather(weatherData[0].icon);
           setDataFromOpenWeather(sunsetRes);
         })
@@ -57,65 +57,46 @@ function SunsetAndSunriseTime({ latitude, longitude, perfectMoment }) {
     return (
       <>
         
-      <div className="bg-gray-100 p-6">
+      <div className="p-6 bg-zinc-100 text-zinc-600 border-t-4 border-green-500">
          
-          <h2 className="font-semibold text-lg pb-2 pl-2 text-zinc-700"> Infos pratiques</h2>
+          <h2 className="font-semibold text-lg pb-2 pl-2"> Infos pratiques</h2>
         
         
         <div className="flex flex-row text-sm ">
        
-          {/* <div className="basis-8/9 pt-3"> */}
-            {/* {temperature && (
-              <p>
-              Il fait actuellement <b>{temperature}°C</b> dans ce lieu avec un
-              ressenti de {feelTemperature}°C.
-              </p>
-            )} */}
-            {/* <div>
-              Heure du coucher de soleil :{" "}
-              <b>{`${hourOfSunset} h ${minuteOfSunset} min`}</b>
-              </div>
-              <div>
-              Heure du lever de soleil :{" "}
-              <b>{`${hourOfSunrise} h ${minuteOfSunrise} min`}</b>
-            </div> */}
-          {/* </div> */}
+
         </div>
         {temperature && (
           
           
           
-          <div class="table w-full ...">
+          <div className="table w-full ...">
  
- <div class="table-row-group">
-   <div class="table-row">
-     <div class="table-cell ">Météo actuellement</div>
-     <div class="table-cell "> <img
+ <div className="table-row-group">
+   <div className="table-row">
+     <div className="table-cell ">Météo actuellement</div>
+     <div className="table-cell "> <img
             src={`http://openweathermap.org/img/wn/${weather}.png`}
             alt="picto-meteo"
-            className="w-8 h-8 "
+            className="w-8 h-8"
             
             /></div>
    </div>
-   <div class="table-row">
-     <div class="table-cell">Température</div>
-     <div class="table-cell">{temperature}°C</div>
+   <div className="table-row">
+     <div className="table-cell">Température</div>
+     <div className="table-cell font-semibold">{temperature}°C</div>
    </div>
-   <div class="table-row">
-         <div class="table-cell">Ressenti</div>
-         <div class="table-cell">{feelTemperature}°C</div>
+   <div className="table-row">
+     <div className="table-cell">Heure lever de soleil</div>
+     <div className="table-cell text-orange-500 font-semibold">{`${hourOfSunrise} h ${minuteOfSunrise} min`}</div>
    </div>
-   <div class="table-row">
-     <div class="table-cell">Heure coucher de soleil</div>
-     <div class="table-cell">{`${hourOfSunset} h ${minuteOfSunset} min`}</div>
+   <div className="table-row">
+     <div className="table-cell">Heure coucher de soleil</div>
+     <div className="table-cell text-orange-500 font-semibold">{`${hourOfSunset} h ${minuteOfSunset} min`}</div>
    </div>
-   <div class="table-row">
-     <div class="table-cell">Heure lever de soleil</div>
-     <div class="table-cell">{`${hourOfSunrise} h ${minuteOfSunrise} min`}</div>
-   </div>
-   <div class="table-row">
-     <div class="table-cell">Moment idéal pour une photo</div>
-     <div class="table-cell">{ perfectMoment }</div>
+   <div className="table-row">
+     <div className="table-cell">Moment idéal pour une photo</div>
+     <div className="table-cell font-semibold">{ perfectMoment }</div>
    </div>
  </div>
 </div>

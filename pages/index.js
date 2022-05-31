@@ -32,7 +32,7 @@ async function getCountryData(pays) {
 }
 
 async function getCountriesData() {
-  const italy = getCountryData("Italy");
+  const italy = getCountryData("Italie");
   const portugal = getCountryData("Portugal");
   const france = getCountryData("France");
 
@@ -42,7 +42,7 @@ async function getCountriesData() {
 
 export async function getStaticProps() {
   const data = await getCountriesData();
-  console.log(data);
+
   return {
     props: {
       spots: {
@@ -60,13 +60,18 @@ export default function Home({ spots }) {
       <Nav />
 
       {/* {console.log(spots)} */}
-      <main className="main">
         <VideoHome />
         <Section />
         <div className="body-size">
-          <HomeLastSpots />
-          <AboutHome />
+        <AboutHome />
         </div>
+      <main className="main bg-gray-100">
+        <div className="body-size py-16">
+          <HomeLastSpots />
+          </div>
+      </main>
+      <main className="main bg-white">
+      <div className="body-size py-16">
         {/* <HomeIndex /> */}
         {/* {console.log(spots.italy)} */}
         <CountryHighlightOne />
@@ -74,9 +79,9 @@ export default function Home({ spots }) {
         <CountryHighlightTwo />
         <CountryHighLight spots={spots.franceData} />
         <CountryHighlightThree />
-        <CountryHighLight spots={spots.portugalData} />
-      </main>
-
+          <CountryHighLight spots={spots.portugalData} />
+          </div>
+        </main>
       <footer className={styles.footer}>
         <Footer />
       </footer>

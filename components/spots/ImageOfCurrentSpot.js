@@ -44,7 +44,7 @@ export default function ImageOfCurrentSpot(nameOfSpot) {
     
     return (
         
-            <img src={url} className="single-image object-scale-down" alt={nameOfSpot.alt} />
+            <img src={url} className="object-contain rounded" alt={nameOfSpot.alt} />
             
      
         )

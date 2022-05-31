@@ -18,7 +18,7 @@ const multiPolyline = [
     [127.88780561089992, -0.03895685336737648]
   ],
 ]
-console.log(pin)
+
 
 // const origin_point = [51.5, 0.1]
 
@@ -79,6 +79,7 @@ const Map = ({
       scrollWheelZoom={true}
       style={{ height: "100%", width: "100%" }}
       minZoom={minZoom}
+      className="rounded"
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -92,10 +93,10 @@ const Map = ({
         ref={markerRef}
       >
         <Popup>
-          {spotName} - {pays}
+          <div className="text-center font-semibold">{spotName} <br /> {pays}</div>
         </Popup>
 
-        <Polyline pathOptions={limeOptions} positions={multiPolyline} />
+        {/* <Polyline pathOptions={limeOptions} positions={multiPolyline} /> */}
       </Marker>
     </MapContainer>
   );

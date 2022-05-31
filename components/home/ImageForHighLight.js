@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 
-function ImageForHomeSpot(photoURL) {
+function ImageForHighLight(photoURL) {
     const [url, setUrl] = useState('')
         useEffect(() => {
     
@@ -33,8 +33,8 @@ function ImageForHomeSpot(photoURL) {
 
     
     return ( 
-        <a href={`/spots/${photoURL.photoURL}`}><img src={url} className="home-gallery-img rounded" alt=""/></a>   
+        <a href={`/spots/${photoURL.photoURL}`}><img src={url} className="home-hightlight-img rounded" alt=""/></a>   
         )
 }
 
-export default ImageForHomeSpot
+export default ImageForHighLight
