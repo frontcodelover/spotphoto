@@ -10,6 +10,7 @@ import React from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import CountryHighLight from "../../components/home/CountryHighLight";
 
+
 var SunCalc = require('suncalc');
 var times = SunCalc.getTimes(new Date(), 51.5, -0.1);
 console.log("times")
@@ -24,6 +25,9 @@ console.log(sunrisePos)
 console.log(sunsetPos)
 console.log(sunriseAzimuth)
 console.log(sunsetAzimuth)
+
+console.log("///")
+
 
 export async function getStaticProps() {
   const spotsCollectionRef = collection(db, "spots");

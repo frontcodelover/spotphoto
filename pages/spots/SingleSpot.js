@@ -53,7 +53,7 @@ function SingleSpot() {
 
   const GeoCodeHide = () => {
     return (
-      <div class="bg-red-200 p-2 rounded text-red-700">
+      <div className="bg-red-200 p-2 rounded text-red-700">
         <div className="flex">
           <FaMapMarkerAlt />
           <div className="pl-1">
@@ -66,7 +66,7 @@ function SingleSpot() {
 
   const GeoCodeShow = () => {
     return (
-      <div class="text-orange-500">
+      <div className="text-orange-500">
         <div className="flex">
           <FaMapMarkerAlt />
           <div className="pl-1">
