@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
 
-import { signup, useAuth, logout, login, auth } from "../../pages/firebase/firebase";
+import {
+  signup,
+  useAuth,
+  logout,
+  login,
+  auth,
+} from "../../pages/firebase/firebase";
 import { useRef } from "react";
 import Profile from "./profil";
 
@@ -63,45 +69,44 @@ function Register() {
   }
 
   return (
-    <div className="flex h-screen items-center justify-items-center flex-col m-auto w-screen">
+    <div className="items-center justify-items-center flex-col w-screen z-40 absolute translate-y-2/4">
       {!currentUser && (
         <>
           <div className="m-auto w-9/12 text-center">
-              <h1 className="text-2xl">
-                GWELED<span className="logo-login-color">VA</span>
-              </h1>
-              <p className="text-gray-700">Email </p>
-              <input
-                ref={emailRef}
-                placeholder="Email"
-                className="px-4 py-3 items-center mb-4 border border-gray-300 rounded-md text-base leading-6 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
-              />
-              <p className="text-gray-700">Mot de passe </p>
-              <input
-                ref={passwordRef}
-                type="password"
-                placeholder="Password"
-                className="px-4 py-3 items-center mb-4 border border-gray-300 rounded-md text-base leading-6 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
-              />
-              <br />
-              <button
-                className=" mb-4 bg-cyan-500 px-4 py-3 rounded-full text-white items-center"
-                disabled={loading}
-                onClick={handleLogin}
-                type="button"
-              >
-                S'identifier
-              </button>
-              <br />
-              <button
-                className=" mb-4 bg-green-500 px-4 py-3 rounded-full text-white items-center bloc"
-                disabled={loading}
-                onClick={handleSignup}
-                type="button"
-              >
-                S'inscrire gratuitement
-              </button>
-            
+            <h1 className="text-2xl">
+              GWELED<span className="logo-login-color">VA</span>
+            </h1>
+            <p className="text-gray-700">Email </p>
+            <input
+              ref={emailRef}
+              placeholder="Email"
+              className="px-4 py-3 items-center mb-4 border border-gray-300 rounded-md text-base leading-6 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
+            />
+            <p className="text-gray-700">Mot de passe </p>
+            <input
+              ref={passwordRef}
+              type="password"
+              placeholder="Password"
+              className="px-4 py-3 items-center mb-4 border border-gray-300 rounded-md text-base leading-6 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5"
+            />
+            <br />
+            <button
+              className=" mb-4 bg-cyan-500 px-4 py-3 rounded-full text-white items-center"
+              disabled={loading}
+              onClick={handleLogin}
+              type="button"
+            >
+              S'identifier
+            </button>
+            <br />
+            <button
+              className=" mb-4 bg-green-500 px-4 py-3 rounded-full text-white items-center bloc"
+              disabled={loading}
+              onClick={handleSignup}
+              type="button"
+            >
+              S'inscrire gratuitement
+            </button>
           </div>
         </>
       )}

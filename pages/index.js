@@ -1,11 +1,5 @@
-import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Link from "next/link";
-import React, { useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase/firebase";
-import HomeIndex from "./home/HomeIndex";
+import React from "react";
 import Nav from "../components/nav";
 import Footer from "./../components/footer";
 import { db } from "./firebase/firebase";
@@ -14,10 +8,20 @@ import CountryHighLight from "../components/home/CountryHighLight";
 import CountryHighlightOne from "../components/home/CountryHighlightOne";
 import CountryHighlightTwo from "../components/home/CountryHighlightTwo";
 import CountryHighlightThree from "../components/home/CountryHighlightThree";
+import VideoHome from "../components/home/VideoHome";
+import Section from "../components/home/Section";
+import AboutHome from "../components/home/AboutHome";
+import HomeLastSpots from "../components/home/HomeLastSpots";
+
+// https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-type
+// https://jsfiddle.net/L1cs6gt5/3/
 
 async function getCountryData(pays) {
   const spotsCollectionRef = collection(db, "spots");
-  const queriedCountry = query(spotsCollectionRef, where("inputs.country.label", "==", pays));
+  const queriedCountry = query(
+    spotsCollectionRef,
+    where("inputs.country.label", "==", pays)
+  );
   const data = await getDocs(queriedCountry);
   const spots = data?.docs?.map((doc) => ({
     data: doc.data(),
@@ -28,38 +32,42 @@ async function getCountryData(pays) {
 }
 
 async function getCountriesData() {
-const italy = getCountryData('Italy');
-const portugal = getCountryData('Portugal');
-const france = getCountryData('France');
+  const italy = getCountryData("Italy");
+  const portugal = getCountryData("Portugal");
+  const france = getCountryData("France");
 
-const data = await Promise.allSettled([italy, portugal, france]);
-return data;
+  const data = await Promise.allSettled([italy, portugal, france]);
+  return data;
 }
 
 export async function getStaticProps() {
-  const data = await getCountriesData()
-  console.log(data)
+  const data = await getCountriesData();
+  console.log(data);
   return {
     props: {
       spots: {
         italyData: data[0].value,
         portugalData: data[1].value,
         franceData: data[2].value,
-      }
-    }
-  }
+      },
+    },
+  };
 }
 
-
-
-export default function Home({spots}) {
+export default function Home({ spots }) {
   return (
     <div className={styles.container}>
       <Nav />
 
       {/* {console.log(spots)} */}
       <main className="main">
-        <HomeIndex />
+        <VideoHome />
+        <Section />
+        <div className="body-size">
+          <HomeLastSpots />
+          <AboutHome />
+        </div>
+        {/* <HomeIndex /> */}
         {/* {console.log(spots.italy)} */}
         <CountryHighlightOne />
         <CountryHighLight spots={spots.italyData} />
