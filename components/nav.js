@@ -23,7 +23,7 @@ export default function Nav() {
       
 
       <header className="bg-zinc-900">
-        <a href="/" className="logo">
+        <a href="/" className="logo font-semibold">
           spot<span className="colorlogo">PHOTO</span>.com
         </a>
         <nav>
@@ -56,11 +56,6 @@ export default function Nav() {
             <li>
               <Link href="/about">
                 <a className="hover-underline">Qui sommes-nous ?</a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/ssr">
-                <a className="hover-underline">Testeur SSR</a>
               </Link>
             </li>
           </ul>
