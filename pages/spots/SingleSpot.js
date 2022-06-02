@@ -259,7 +259,7 @@ function SingleSpot() {
         setPerfectMoment(currentSpot.inputs.moment);
         // console.log(currentSpot.inputs.name);
 
-        document.title = `${currentSpot.inputs.name} - ${currentSpot.inputs.pays}`;
+        document.title = `${currentSpot.inputs.name} - ${currentSpot.inputs.country.label}`;
         fetchUserWhoAddThisPost();
       } catch (error) {
         console.log(error);
