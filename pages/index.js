@@ -60,28 +60,28 @@ export default function Home({ spots }) {
       <Nav />
 
       {/* {console.log(spots)} */}
-        <VideoHome />
-        <Section />
-        <div className="body-size">
+      <VideoHome />
+      <Section />
+      <div className="body-size">
         <AboutHome />
-        </div>
+      </div>
       <main className="main bg-gray-100">
         <div className="body-size py-16">
           <HomeLastSpots />
-          </div>
+        </div>
       </main>
       <main className="main bg-white">
-      <div className="body-size py-16">
-        {/* <HomeIndex /> */}
-        {/* {console.log(spots.italy)} */}
-        <CountryHighlightOne />
-        <CountryHighLight spots={spots.italyData} />
-        <CountryHighlightTwo />
-        <CountryHighLight spots={spots.franceData} />
-        <CountryHighlightThree />
+        <div className="body-size py-16">
+          {/* <HomeIndex /> */}
+          {/* {console.log(spots.italy)} */}
+          <CountryHighlightOne />
+          <CountryHighLight spots={spots.italyData} />
+          <CountryHighlightTwo />
+          <CountryHighLight spots={spots.franceData} />
+          <CountryHighlightThree />
           <CountryHighLight spots={spots.portugalData} />
-          </div>
-        </main>
+        </div>
+      </main>
       <footer className={styles.footer}>
         <Footer />
       </footer>

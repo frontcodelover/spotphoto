@@ -2,7 +2,6 @@
 // import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 // // import { Icon } from './Icon';
 
-
 // function DraggableMarker({ position, setPosition }) {
 //   const [draggable, setDraggable] = useState(true)
 //   const markerRef = useRef(null)
@@ -13,7 +12,7 @@
 //         const marker = markerRef.current
 //         if (marker != null) {
 //           setPosition(marker.getLatLng())
-//         } 
+//         }
 //       },
 //     }),
 //     [setPosition],
@@ -39,7 +38,7 @@
 //       </Popup>
 //     </Marker>
 //   )
-// } 
+// }
 
 // export const MapsResquest = ({ position, setPosition }) => {
 //   function draggableMarkerExample(position, setPosition) {

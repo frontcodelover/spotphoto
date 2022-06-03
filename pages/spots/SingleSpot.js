@@ -13,11 +13,7 @@ import {
   arrayRemove,
 } from "firebase/firestore";
 import { useAuth, db, auth } from "../firebase/firebase";
-import {
-  FaMapMarkerAlt,
-  FaBookmark,
-  FaRegBookmark,
-} from "react-icons/fa";
+import { FaMapMarkerAlt, FaBookmark, FaRegBookmark } from "react-icons/fa";
 import SunsetAndSunriseTime from "../../components/spots/SunsetAndSunriseTime";
 import { useRouter } from "next/router";
 import ImageOfCurrentSpot from "../../components/spots/ImageOfCurrentSpot";
@@ -25,7 +21,10 @@ import dynamic from "next/dynamic";
 import Footer from "../../components/footer";
 
 function SingleSpot() {
-  const MapOfSingleSpot = dynamic(() => import("../../components/spots/SpotMap"), { ssr: false });
+  const MapOfSingleSpot = dynamic(
+    () => import("../../components/spots/SpotMap"),
+    { ssr: false }
+  );
   const [spots, setSpot] = useState(null);
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
@@ -78,9 +77,8 @@ function SingleSpot() {
   };
 
   function alertFav() {
-    alert("Vous devez être connecté pour ajouter ce spot dans vos favoris.") 
-    ;
-  };
+    alert("Vous devez être connecté pour ajouter ce spot dans vos favoris.");
+  }
 
   function BookmarkAllready() {
     if (user) {
@@ -120,7 +118,6 @@ function SingleSpot() {
         );
       }
     } else {
-
       return (
         //*Si pas connecté
         <>
@@ -133,7 +130,7 @@ function SingleSpot() {
             </button>
           </div>
           <div className="text-sm text-green-500 font-semibold">
-          Ajouter à collection
+            Ajouter à collection
           </div>
         </>
       );
@@ -233,7 +230,8 @@ function SingleSpot() {
           setInfoUserWhoAdd(
             infoUser.map((user) => (
               <div className="add flex justify-end" key="1">
-                Ajouté par <div className="text-orange-500 font-semibold pl-1">{user}</div>
+                Ajouté par{" "}
+                <div className="text-orange-500 font-semibold pl-1">{user}</div>
               </div>
             ))
           );
@@ -284,31 +282,25 @@ function SingleSpot() {
   return (
     <>
       <div className="main">
-        
-
         <div className="container-post">
           {/* <ImageCurrentSpot alt={nameOfSpot} /> */}
 
           <div className="content-post">
-           
             <div className="px-3 py-9 max-w-screen-xl m-auto">
               {/* {bigboss ? <button onClick={deletePost}>Supprimer</button> : ""} */}
 
               <div className="flex flex-col md:flex-row lg:flex-row">
                 <div className="w-screen pr-8 lg:w-6/12 md:w-6/12">
-                <ImageOfCurrentSpot />
-                  
+                  <ImageOfCurrentSpot />
 
-                  <div className="pr-8 ">
-                  
-                </div>
+                  <div className="pr-8 "></div>
                 </div>
 
                 <div className="mb-6 lg:w-6/12 md:w-6/12">
-                <div className="text-right text-3xl pb-9 w-1/3 float-right">
+                  <div className="text-right text-3xl pb-9 w-1/3 float-right">
                     {BookmarkAllready()}
                   </div>
-                <p className="font-semibold text-lg text-green-500">
+                  <p className="font-semibold text-lg text-green-500">
                     {spots.inputs?.country?.label}
                   </p>
                   <h1 className="text-4xl text-zinc-900 pb-4 font-semibold">
@@ -318,7 +310,6 @@ function SingleSpot() {
                     <div className="flex pl-1">
                       {user ? GeoCodeShow() : GeoCodeHide()}
                     </div>
-                    
                   </div>
 
                   <div className="py-2  text-justify">
@@ -339,8 +330,9 @@ function SingleSpot() {
                     </h2>
                     <p className="text-zinc-500 mb-6">{spots.inputs?.acces}</p>
                   </div>
-                  <div className="text-sm mb-12 text-right">{infoUserWhoAdd}</div>
-                 
+                  <div className="text-sm mb-12 text-right">
+                    {infoUserWhoAdd}
+                  </div>
 
                   {/* {spots.lat}, {spots.lon} */}
                   <SunsetAndSunriseTime
@@ -349,13 +341,12 @@ function SingleSpot() {
                     perfectMoment={perfectMoment}
                   />
 
-                  
                   {/* <div className="likebtn-global"> */}
-                    {/* <button className="btn-heart" onClick={() => setCount(count + 1)}>
+                  {/* <button className="btn-heart" onClick={() => setCount(count + 1)}>
               <FaHeart className="heart-icon" />
             </button> */}
 
-                    {/* <input
+                  {/* <input
                       id="heart"
                       type="checkbox"
                       onChange={AddLike}
@@ -364,7 +355,7 @@ function SingleSpot() {
                       // onClick={() => setCount(+spot.nbLike + 1)}
                       value={+spots.nbLike + 1}
                     /> */}
-                    {/* <div className="row">
+                  {/* <div className="row">
                       {
                         //Check if message failed
                         count === null ? (
@@ -384,13 +375,10 @@ function SingleSpot() {
                         )
                       }
                     </div> */}
-                    {/* <label htmlFor="heart">❤</label>  
+                  {/* <label htmlFor="heart">❤</label>  
               {(count === null ? spots.nbLike : count)} personnes ont aimé ce spot */}
                   {/* </div> */}
-            </div>
-
-
-               
+                </div>
               </div>
             </div>
           </div>

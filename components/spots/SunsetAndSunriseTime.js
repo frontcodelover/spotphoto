@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaRegClock } from "react-icons/fa";
-import {OpenWeatherApiKey} from "../../pages/firebase/firebase"
-
+import { OpenWeatherApiKey } from "../../pages/firebase/firebase";
 
 function SunsetAndSunriseTime({ latitude, longitude, perfectMoment }) {
   const [error] = useState(null);
@@ -12,8 +11,6 @@ function SunsetAndSunriseTime({ latitude, longitude, perfectMoment }) {
 
   const [weather, setWeather] = useState(null);
 
-
-  
   useEffect(() => {
     if (latitude && longitude) {
       fetch(
@@ -56,54 +53,49 @@ function SunsetAndSunriseTime({ latitude, longitude, perfectMoment }) {
   } else {
     return (
       <>
-        
-      <div className="p-6 bg-zinc-100 text-zinc-600 border-t-4 border-green-500">
-         
+        <div className="p-6 bg-zinc-100 text-zinc-600 border-t-4 border-green-500">
           <h2 className="font-semibold text-lg pb-2 pl-2"> Infos pratiques</h2>
-        
-        
-        <div className="flex flex-row text-sm ">
-       
 
+          <div className="flex flex-row text-sm "></div>
+          {temperature && (
+            <div className="table w-full ...">
+              <div className="table-row-group">
+                <div className="table-row">
+                  <div className="table-cell ">Météo actuellement</div>
+                  <div className="table-cell ">
+                    {" "}
+                    <img
+                      src={`http://openweathermap.org/img/wn/${weather}.png`}
+                      alt="picto-meteo"
+                      className="w-8 h-8"
+                    />
+                  </div>
+                </div>
+                <div className="table-row">
+                  <div className="table-cell">Température</div>
+                  <div className="table-cell font-semibold">
+                    {temperature}°C
+                  </div>
+                </div>
+                <div className="table-row">
+                  <div className="table-cell">Heure lever de soleil</div>
+                  <div className="table-cell text-orange-500 font-semibold">{`${hourOfSunrise} h ${minuteOfSunrise} min`}</div>
+                </div>
+                <div className="table-row">
+                  <div className="table-cell">Heure coucher de soleil</div>
+                  <div className="table-cell text-orange-500 font-semibold">{`${hourOfSunset} h ${minuteOfSunset} min`}</div>
+                </div>
+                <div className="table-row">
+                  <div className="table-cell">Moment idéal pour une photo</div>
+                  <div className="table-cell font-semibold">
+                    {perfectMoment}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-        {temperature && (
-          
-          
-          
-          <div className="table w-full ...">
- 
- <div className="table-row-group">
-   <div className="table-row">
-     <div className="table-cell ">Météo actuellement</div>
-     <div className="table-cell "> <img
-            src={`http://openweathermap.org/img/wn/${weather}.png`}
-            alt="picto-meteo"
-            className="w-8 h-8"
-            
-            /></div>
-   </div>
-   <div className="table-row">
-     <div className="table-cell">Température</div>
-     <div className="table-cell font-semibold">{temperature}°C</div>
-   </div>
-   <div className="table-row">
-     <div className="table-cell">Heure lever de soleil</div>
-     <div className="table-cell text-orange-500 font-semibold">{`${hourOfSunrise} h ${minuteOfSunrise} min`}</div>
-   </div>
-   <div className="table-row">
-     <div className="table-cell">Heure coucher de soleil</div>
-     <div className="table-cell text-orange-500 font-semibold">{`${hourOfSunset} h ${minuteOfSunset} min`}</div>
-   </div>
-   <div className="table-row">
-     <div className="table-cell">Moment idéal pour une photo</div>
-     <div className="table-cell font-semibold">{ perfectMoment }</div>
-   </div>
- </div>
-</div>
- )}
-
-      </div>
- </>
+      </>
     );
   }
 }

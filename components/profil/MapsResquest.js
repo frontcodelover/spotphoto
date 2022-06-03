@@ -11,7 +11,7 @@
 //         const marker = markerRef.current
 //         if (marker != null) {
 //           setPosition(marker.getLatLng())
-//         } 
+//         }
 //       },
 //     }),
 //     [setPosition],
@@ -37,7 +37,7 @@
 //       </Popup>
 //     </Marker>
 //   )
-// } 
+// }
 
 // export const MapsResquest = ({ position, setPosition }) => {
 //   function draggableMarkerExample(position, setPosition) {

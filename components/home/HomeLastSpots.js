@@ -31,8 +31,12 @@ export default function IndexBanner() {
   return (
     <>
       <div className="title-section">
-        <p className="font-semibold text-xl text-zinc-900">Votre prochaine photo</p>
-        <h2 className="text-4xl pb-9 text-green-500 font-bold">Les derniers lieux ajoutés</h2>
+        <p className="font-semibold text-xl text-zinc-900">
+          Votre prochaine photo
+        </p>
+        <h2 className="text-4xl pb-9 text-green-500 font-bold">
+          Les derniers lieux ajoutés
+        </h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {spots.map(
@@ -43,7 +47,10 @@ export default function IndexBanner() {
                 {/* AJOUTER UN ATL POUR L'IMAGE AVEC LES PROPS */}
                 <ImageForHomeSpot photoURL={spot.uid} />
                 <div className="my-2">
-                  <a href={`/spots/${spot.id}`} className="text-lg font-semibold text-zinc-900">
+                  <a
+                    href={`/spots/${spot.id}`}
+                    className="text-lg font-semibold text-zinc-900"
+                  >
                     {" "}
                     {spot.data.inputs.name}
                   </a>
@@ -51,7 +58,12 @@ export default function IndexBanner() {
                     className="link-dep"
                     href={`/departement/${spot.data.inputs.departementLower}`}
                   >
-                    <div className="flex text-md text-green-500 font-normal"><FaMapMarkerAlt className="text-xl py-1" /> <div className="pl-1">{spot.data.inputs?.country?.label}</div></div>
+                    <div className="flex text-md text-green-500 font-normal">
+                      <FaMapMarkerAlt className="text-xl py-1" />{" "}
+                      <div className="pl-1">
+                        {spot.data.inputs?.country?.label}
+                      </div>
+                    </div>
                   </a>
                 </div>
               </div>
