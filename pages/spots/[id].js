@@ -8,8 +8,10 @@ export default function spots() {
   
   
   return (
-    <div><Nav />
-      <SingleSpot /></div>
+    <>
+    <Nav />
+    <SingleSpot />
+      </>
     )
   }
   

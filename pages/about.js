@@ -11,15 +11,18 @@ export default function about() {
     <>
       <Nav />
       <main className="main">
-        <h1 className="">Qui sommes-nous ?</h1>
+      <section className="body-size py-9">
+        <h1 className="text-9xl w-3/6 font-bold pb-9">Trouvez votre prochain spot photo</h1>
+        <h2 className="text-4xl text-zinc-900 pb-4 font-semibold">Qui sommes-nous ?</h2>
         <p>
-          Si vous aimez la photo et la Bretagne mais que vous ne savez pas
-          comment trouver les bons spots, GWELEDVA est fait pour vous. Vous
+          Si vous aimez la photo mais que vous ne savez pas
+          comment trouver les bons spots, SPOTPHOTO.com est fait pour vous. Vous
           trouvez sur ce site tous les spots les plus emblématiques. <br />
           La Bretagne c'est comme la montagne, ça vous gagne !
         </p>
+      </section>
       </main>
-      <footer className={styles.footer}>
+      <footer className="bottom-0 fixed">
         <Footer />
       </footer>
     </>
